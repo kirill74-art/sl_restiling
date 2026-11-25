@@ -247,12 +247,13 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 </script>
 <script type="module">
-let THREE, OrbitControls, GLTFLoader, KTX2Loader, MeshoptDecoder, importFailure=null;
+let THREE, OrbitControls, GLTFLoader, KTX2Loader, DRACOLoader, MeshoptDecoder, importFailure=null;
 try {
   THREE = await import('three');
   ({ OrbitControls } = await import('three/addons/controls/OrbitControls.js'));
   ({ GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js'));
   ({ KTX2Loader } = await import('three/addons/loaders/KTX2Loader.js'));
+  ({ DRACOLoader } = await import('three/addons/loaders/DRACOLoader.js'));
   ({ MeshoptDecoder } = await import('three/addons/libs/meshopt_decoder.module.js'));
 } catch (primaryError) {
   console.warn('Primary Three.js CDN failed; trying backup CDN', primaryError);
@@ -261,6 +262,7 @@ try {
     ({ OrbitControls } = await import('https://esm.sh/three@0.186.1/examples/jsm/controls/OrbitControls.js?bundle&external=three'));
     ({ GLTFLoader } = await import('https://esm.sh/three@0.186.1/examples/jsm/loaders/GLTFLoader.js?bundle&external=three'));
     ({ KTX2Loader } = await import('https://esm.sh/three@0.186.1/examples/jsm/loaders/KTX2Loader.js?bundle&external=three'));
+    ({ DRACOLoader } = await import('https://esm.sh/three@0.186.1/examples/jsm/loaders/DRACOLoader.js?bundle&external=three'));
     ({ MeshoptDecoder } = await import('https://esm.sh/three@0.186.1/examples/jsm/libs/meshopt_decoder.module.js?bundle'));
   } catch (backupError) {
     console.error('Three.js could not be loaded from either CDN', backupError);
@@ -272,7 +274,7 @@ try {
 }
 const canvas=document.querySelector('#car3d'),hero=document.querySelector('#home'),copy=document.querySelector('#heroCopy'),status=document.querySelector('#carStatus');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(importFailure||!THREE||!GLTFLoader){if(status)status.textContent='НЕ УДАЛОСЬ ЗАГРУЗИТЬ 3D-ДВИЖОК';throw importFailure||new Error('Three.js unavailable');}
+if(importFailure||!THREE||!GLTFLoader||!DRACOLoader){if(status)status.textContent='НЕ УДАЛОСЬ ЗАГРУЗИТЬ 3D-ДВИЖОК';throw importFailure||new Error('Three.js unavailable');}
 let scene,camera,renderer,controls,carRoot,raf=0,last=0,progress=0,inView=false,disposed=false;
 function buildCar(){
  const root=new THREE.Group();
@@ -345,6 +347,10 @@ function start(){
       console.warn('Primary Family Sedan could not be loaded; switching to a real standalone GLB vehicle model.',lastVehicleError);
       status.textContent='ЗАГРУЖАЕМ РЕЗЕРВНУЮ 3D-МОДЕЛЬ АВТОМОБИЛЯ';
       const backupLoader=new GLTFLoader();
+      const backupKtx2=new KTX2Loader().setTranscoderPath('https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/libs/basis/').detectSupport(renderer);
+      const backupDraco=new DRACOLoader().setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/libs/draco/gltf/');
+      backupLoader.setKTX2Loader(backupKtx2);
+      backupLoader.setDRACOLoader(backupDraco);
       backupLoader.setMeshoptDecoder(MeshoptDecoder);
       backupLoader.load('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/CarConcept/GLB/CarConcept.glb',gltf=>{
         if(disposed||!scene)return;
@@ -357,7 +363,9 @@ function start(){
         carRoot.add(model);
         const poster=document.querySelector('#carPoster');if(poster)poster.style.display='none';
         status.textContent='ИНТЕРАКТИВНАЯ 3D-МОДЕЛЬ АВТОМОБИЛЯ · ВРАЩАЙТЕ МЫШЬЮ';
+        backupKtx2.dispose();backupDraco.dispose();
       },undefined,backupError=>{
+        backupKtx2.dispose();backupDraco.dispose();
         console.error('Both real vehicle models failed to load:',backupError);
         status.textContent='3D-МОДЕЛЬ НЕДОСТУПНА · ПРОВЕРЬТЕ ДОСТУП К WEBGL И ИНТЕРНЕТУ';
       });
