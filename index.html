@@ -10,210 +10,85 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080b10;--ink:#f5f7fb;--muted:#9ba8b8;--ice:#b9d5e9;--cyan:#83c7df;--line:rgba(221,239,255,.14);--glass:rgba(225,240,255,.065);--max:1180px}
-*{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--bg)}body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,Arial,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}.wrap{width:min(var(--max),calc(100% - 52px));margin:auto}
-body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at 50% 8%,rgba(83,135,169,.17),transparent 42%),radial-gradient(ellipse at 90% 80%,rgba(42,91,126,.12),transparent 36%);pointer-events:none}
-.grain{position:fixed;inset:0;z-index:20;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
-.topbar{position:absolute;top:0;left:0;width:100%;z-index:8;padding:26px 0}.topbar-in{display:flex;align-items:center;justify-content:space-between}.brand{font-size:13px;font-weight:800;letter-spacing:.19em}.brand b{color:var(--cyan)}.top-note{font-size:9px;color:#a9b9c7;letter-spacing:.18em;text-transform:uppercase}
-.hero{height:175svh;position:relative}.hero-sticky{height:100svh;position:sticky;top:0;overflow:hidden;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 53%,rgba(71,123,160,.18),transparent 38%),linear-gradient(145deg,#0a0e15,#080b10 55%,#0c131c)}
-.hero-sticky:before{content:"";position:absolute;width:min(90vw,950px);height:min(70vw,600px);border:1px solid rgba(184,218,240,.07);border-radius:50%;transform:rotateX(70deg) translateY(12%);box-shadow:0 0 90px rgba(97,161,198,.08),inset 0 0 70px rgba(97,161,198,.04)}
-.hero-sticky:after{content:"";position:absolute;bottom:12%;width:min(68vw,760px);height:13%;border-radius:50%;background:rgba(83,151,190,.16);filter:blur(65px)}
-#car3d{position:absolute;inset:8% 0 7%;width:100%;height:85%;z-index:2;display:block;touch-action:pan-y}
-.hero-copy{position:absolute;z-index:4;left:0;right:0;bottom:9%;text-align:center;pointer-events:none;transition:opacity .15s}.hero-overline{font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:#b4d3e5}.hero h1{font-size:clamp(36px,6.5vw,76px);line-height:1.02;letter-spacing:-.075em;font-weight:600;margin:15px 0 11px}.hero h1 span{color:#a9cce1}.hero-sub{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#a4b1be}.scroll-hint{position:absolute;z-index:5;bottom:25px;left:50%;transform:translateX(-50%);font-size:8px;letter-spacing:.22em;color:#8295a5;display:flex;align-items:center;gap:10px}.scroll-hint i{display:block;width:35px;height:1px;background:linear-gradient(90deg,transparent,#a8d5e9);animation:hint 1.8s ease-in-out infinite}@keyframes hint{50%{transform:scaleX(.35);opacity:.45}}
-.glass{background:linear-gradient(135deg,rgba(225,242,255,.105),rgba(225,242,255,.025));border:1px solid rgba(220,240,255,.15);box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 24px 80px rgba(0,0,0,.24);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
-.section{padding:112px 0;position:relative}.intro{margin-top:-1px;padding-top:100px}.intro-panel{border-radius:28px;padding:clamp(28px,6vw,76px);display:grid;grid-template-columns:1fr .8fr;gap:60px;align-items:end;position:relative;overflow:hidden}.intro-panel:after{content:"";position:absolute;width:340px;height:340px;right:-100px;top:-190px;border-radius:50%;background:rgba(109,181,218,.13);filter:blur(40px);pointer-events:none}.eyebrow{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--cyan);font-weight:700}.intro h2,.section-title{font-size:clamp(37px,5.5vw,64px);line-height:1.04;letter-spacing:-.07em;font-weight:600;margin:17px 0 0}.intro p,.section-desc{font-size:12px;line-height:2;color:var(--muted);max-width:440px;margin:0}
-.services{padding-top:75px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:38px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.service{min-height:250px;border-radius:22px;padding:25px;position:relative;overflow:hidden;transition:transform .55s cubic-bezier(.2,.8,.2,1),border-color .4s,background .4s;transform-style:preserve-3d}.service:hover{transform:translateY(-8px) rotateX(2deg);border-color:rgba(153,211,238,.38);background:linear-gradient(145deg,rgba(210,238,255,.13),rgba(210,238,255,.035))}.service:before{content:"";position:absolute;width:190px;height:190px;right:-55px;top:-55px;border-radius:50%;background:var(--orb,rgba(108,177,214,.17));filter:blur(30px);transition:transform .7s}.service:hover:before{transform:scale(1.35)}.service-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}.service-num{font-size:9px;letter-spacing:.2em;color:#a5bac9}.service-icon{width:43px;height:43px;border-radius:14px;display:grid;place-items:center;border:1px solid rgba(222,240,255,.18);background:rgba(225,242,255,.07);color:#c4e3f3;font-size:19px;box-shadow:inset 0 1px 0 rgba(255,255,255,.13)}.service h3{position:relative;z-index:1;font-size:18px;line-height:1.3;letter-spacing:-.035em;margin:48px 0 10px;max-width:250px}.service p{position:relative;z-index:1;font-size:10px;line-height:1.8;color:#9eacba;max-width:280px;margin:0}.service-link{position:absolute;bottom:23px;right:25px;color:#b9d9ea;font-size:16px;z-index:1}
-.method{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:center}.method-visual{min-height:440px;border-radius:28px;position:relative;overflow:hidden;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 50%,rgba(107,176,212,.22),transparent 58%),linear-gradient(145deg,#121d29,#0a0f17)}.method-visual:before,.method-visual:after{content:"";position:absolute;width:72%;aspect-ratio:1;border:1px solid rgba(196,228,245,.13);border-radius:50%;transform:rotateX(68deg)}.method-visual:after{width:53%;border-color:rgba(196,228,245,.08)}.monogram{font-size:clamp(75px,13vw,150px);font-weight:800;letter-spacing:-.12em;color:rgba(206,232,246,.82);text-shadow:0 0 70px rgba(120,196,230,.4);z-index:1}.method-copy .section-title{margin-bottom:18px}.steps{margin-top:28px}.step{padding:19px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:42px 1fr;gap:15px}.step b{font-size:10px;color:var(--cyan);letter-spacing:.1em}.step h3{font-size:13px;margin:0 0 6px}.step p{font-size:10px;line-height:1.8;color:var(--muted);margin:0}
-.about-panel{border-radius:28px;padding:clamp(28px,5vw,60px);display:grid;grid-template-columns:1fr 1fr;gap:40px}.about-panel p{font-size:12px;line-height:2;color:var(--muted);margin:0}.numbers{display:flex;gap:10px;margin-top:24px}.number{flex:1;padding:18px 14px;border-radius:16px;background:rgba(220,240,255,.045);border:1px solid var(--line)}.number b{font-size:22px;display:block}.number span{font-size:8px;letter-spacing:.12em;color:#91a2b2;text-transform:uppercase}
-.contact{padding-top:70px}.contact-panel{border-radius:28px;padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:1fr .8fr;gap:50px;align-items:center;background:radial-gradient(ellipse at 100% 0,rgba(99,165,205,.14),transparent 45%),linear-gradient(135deg,rgba(225,242,255,.09),rgba(225,242,255,.025))}.contact-panel .section-title{margin-bottom:15px}.contact-details{display:grid;gap:13px;margin-top:28px}.contact-details a,.contact-details div{display:flex;align-items:center;gap:13px;font-size:11px;color:#c3d0dc}.contact-icon{width:37px;height:37px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:rgba(255,255,255,.05);color:#b7d7e9}.contact-action{padding:28px;border-radius:20px;background:rgba(5,11,18,.35);border:1px solid rgba(224,242,255,.14)}.contact-action h3{font-size:20px;margin:0 0 10px}.contact-action p{font-size:10px;line-height:1.9;color:var(--muted);margin:0 0 22px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:40px;background:linear-gradient(135deg,#d8edf8,#8ebbd1);color:#0a121a;font-size:10px;font-weight:800;box-shadow:0 8px 30px rgba(119,184,215,.18);transition:transform .25s}.button:hover{transform:translateY(-3px)}.button.secondary{background:rgba(230,244,255,.06);color:#d8e8f2;border:1px solid var(--line);box-shadow:none;margin-left:8px}
-footer{padding:26px 0;border-top:1px solid var(--line);font-size:9px;color:#8191a0}.footer-in{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .85s ease,transform .85s cubic-bezier(.2,.75,.2,1)}.reveal.visible{opacity:1;transform:translateY(0)}
-@media(max-width:850px){.wrap{width:calc(100% - 38px)}.hero{height:155svh}.hero-copy{bottom:12%}.intro-panel,.method,.about-panel,.contact-panel{grid-template-columns:1fr;gap:25px}.intro-panel{padding:35px}.cards{grid-template-columns:repeat(2,1fr)}.method-visual{min-height:330px}.section{padding:82px 0}.section-head{align-items:start;flex-direction:column;gap:14px}}
-@media(max-width:560px){.wrap{width:calc(100% - 30px)}.topbar{padding-top:20px}.brand{font-size:11px}.top-note{font-size:7px}.hero{height:145svh}.hero-sticky{height:100svh}.hero-sticky:before{width:115vw;height:75vw}.hero-sticky:after{width:90vw;bottom:22%;filter:blur(45px)}#car3d{inset:12% -12% 18%;width:124%;height:70%}.hero-copy{bottom:17%;padding:0 16px}.hero h1{font-size:clamp(39px,11vw,54px);margin:13px 0 8px}.hero-overline{font-size:8px}.hero-sub{font-size:8px;letter-spacing:.12em}.scroll-hint{bottom:24px}.section{padding:68px 0}.intro{padding-top:65px}.intro-panel{padding:27px 23px;border-radius:22px}.intro h2,.section-title{font-size:42px}.intro p,.section-desc{font-size:11px}.section-head{margin-bottom:25px}.cards{grid-template-columns:1fr;gap:11px}.service{min-height:210px;padding:21px;border-radius:19px}.service h3{margin-top:35px;font-size:17px}.service p{font-size:10px}.service-link{bottom:20px;right:21px}.method-visual{min-height:245px;border-radius:22px}.about-panel,.contact-panel{padding:25px 22px;border-radius:22px}.numbers{gap:7px}.number{padding:13px 9px}.number b{font-size:18px}.number span{font-size:7px}.contact-action{padding:22px}.button{min-height:44px;padding:0 15px;font-size:9px}.footer-in{flex-direction:column}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
-
-.rotate-hint{margin:18px auto 0;font-size:8px;letter-spacing:.16em;color:#91aebf;opacity:.82}
-.service{padding:0 22px 25px;min-height:330px}.service-photo{height:160px;margin:0 -22px 20px;overflow:hidden;position:relative;border-radius:21px 21px 0 0;background:linear-gradient(135deg,#1d2c3a,#0c131c)}.service-photo:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(8,13,20,.75))}.service-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.72) brightness(.82);transition:transform .8s}.service:hover .service-photo img{transform:scale(1.07)}.service h3{margin-top:18px}.service-modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}.service-modal.open{opacity:1;visibility:visible}.modal-backdrop{position:absolute;inset:0;background:rgba(1,5,10,.72);backdrop-filter:blur(12px)}.modal-panel{position:relative;width:min(520px,100%);border-radius:25px;padding:36px;transform:translateY(20px) scale(.98);transition:transform .35s;z-index:1}.service-modal.open .modal-panel{transform:none}.modal-close{position:absolute;right:17px;top:12px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:white;border-radius:50%;width:36px;height:36px;font-size:22px;cursor:pointer}.modal-panel h2{font-size:clamp(26px,5vw,38px);letter-spacing:-.05em;line-height:1.1;margin:16px 30px 12px 0}.modal-price{font-size:21px;font-weight:800;color:#b9dced;margin-bottom:16px}.modal-panel p{font-size:12px;line-height:1.9;color:var(--muted);margin:0 0 24px}.modal-panel .button{min-height:48px}
-@media(max-width:560px){.service{min-height:300px}.service-photo{height:150px}.modal-panel{padding:28px 23px}.rotate-hint{font-size:7px;line-height:1.6;max-width:270px}.hero-copy{bottom:14%}}
- 
-/* Refined pearl-glass redesign */
-:root{--bg:#e9eef2;--ink:#18232d;--muted:#62717e;--ice:#d8e8f2;--cyan:#6b9eb8;--line:rgba(255,255,255,.68);--glass:rgba(255,255,255,.42)}
-html,body{background:#e9eef2;color:#18232d}
-body:before{z-index:-2;background:radial-gradient(ellipse at 18% 4%,rgba(255,255,255,.98),transparent 38%),radial-gradient(ellipse at 88% 20%,rgba(183,210,226,.62),transparent 35%),linear-gradient(155deg,#eef3f6,#dce5eb 58%,#f5f7f8)}
-.grain{opacity:.018}
-.topbar{position:absolute}.brand{color:#172632}.brand b{color:#79a9c0}.top-note{color:#657887}
-.hero-sticky{background:radial-gradient(ellipse at 50% 48%,rgba(255,255,255,.96),rgba(216,229,237,.74) 42%,rgba(197,213,224,.62) 72%),linear-gradient(145deg,#f7fafb,#dbe5eb)}
-.hero-sticky:before{border-color:rgba(83,117,139,.15);box-shadow:0 0 100px rgba(112,155,180,.16),inset 0 0 80px rgba(255,255,255,.52)}
-.hero-sticky:after{background:rgba(105,151,177,.22)}
-.hero-overline{color:#597b90}.hero h1{color:#172630;text-shadow:0 8px 35px rgba(255,255,255,.55)}.hero h1 span{color:#648da5}.hero-sub{color:#617582}.scroll-hint{color:#607987}.scroll-hint i{background:linear-gradient(90deg,transparent,#6f9fb8)}
-.car-status{position:absolute;z-index:6;left:50%;top:17%;transform:translateX(-50%);font-size:8px;letter-spacing:.17em;color:#657f90;background:rgba(255,255,255,.34);border:1px solid rgba(255,255,255,.65);padding:9px 14px;border-radius:30px;backdrop-filter:blur(16px);white-space:nowrap}
-#car3d{z-index:3;touch-action:none}
-.glass{background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(255,255,255,.32));border:1px solid rgba(255,255,255,.82);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 22px 65px rgba(67,91,108,.12);backdrop-filter:blur(28px) saturate(145%);-webkit-backdrop-filter:blur(28px) saturate(145%)}
-.eyebrow{color:#6c9bb2}.intro h2,.section-title{color:#172630}.intro p,.section-desc{color:#62727e}
-.intro-panel:after{background:rgba(150,192,213,.22)}
-.service{padding:0;min-height:0;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(145deg,rgba(255,255,255,.82),rgba(255,255,255,.46));border-color:rgba(255,255,255,.9);box-shadow:0 18px 55px rgba(61,85,101,.11),inset 0 1px 0 #fff;cursor:pointer;transform:none}
-.service:before{display:none}.service:hover{transform:translateY(-7px);background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(255,255,255,.62));border-color:#fff;box-shadow:0 25px 60px rgba(61,85,101,.17)}
-.service-photo{height:190px;flex:0 0 190px;margin:0;border-radius:0;overflow:hidden;position:relative;background:linear-gradient(135deg,#d6e1e8,#aebfcb)}
-.service-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.82) contrast(1.02);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
-.service:hover .service-photo img{transform:scale(1.055)}
-.service-photo:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(16,31,42,.18));pointer-events:none}
-.service-photo.photo-fallback:before{content:"SL. DETAILING68";position:absolute;inset:0;display:grid;place-items:center;color:rgba(255,255,255,.8);font-size:12px;letter-spacing:.22em}
-.service-content{padding:22px 23px 20px;display:flex;flex-direction:column;flex:1;min-height:215px}
-.service-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.service-num{color:#78909f;font-size:9px;letter-spacing:.16em;font-weight:700}
-.service-icon{width:38px;height:38px;flex:0 0 38px;border-radius:13px;color:#668ca2;border-color:rgba(118,159,181,.25);background:rgba(230,241,247,.7);box-shadow:inset 0 1px 0 #fff}
-.service h3{color:#1c2c37;font-size:17px;line-height:1.35;letter-spacing:-.035em;margin:18px 0 9px;min-height:46px}
-.service p{color:#657581;font-size:11px;line-height:1.75;margin:0;max-width:none}
-.service-more{margin-top:auto;padding-top:20px;display:flex;align-items:center;justify-content:space-between;color:#608ba3;font-size:10px;font-weight:700;letter-spacing:.04em}.service-more b{font-size:17px;font-weight:500}
+:root{--ink:#23323d;--muted:#61727e;--blue:#6f94a9;--line:rgba(82,112,131,.18);--max:1180px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:#e8eef2}
+body{margin:0;overflow-x:hidden;color:var(--ink);font-family:Manrope,Arial,sans-serif;background:linear-gradient(145deg,#edf2f5,#dfe8ee 48%,#e9eff2);font-size:16px;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(var(--max),calc(100% - 56px));margin:0 auto}
+.grain{position:fixed;inset:0;z-index:30;pointer-events:none;opacity:.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
+.topbar{position:absolute;z-index:10;top:0;left:0;width:100%;padding:24px 0}.topbar-in{display:flex;align-items:center;justify-content:space-between}.brand{font-size:15px;font-weight:800;letter-spacing:.15em;color:#263945}.brand b{color:#729bb1}.top-note{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#617987}
+.hero{height:125svh;position:relative}.hero-sticky{height:100svh;position:sticky;top:0;overflow:hidden;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 45%,#fbfcfd 0%,#e8f0f4 43%,#cbdce6 100%)}
+.hero-sticky:before{content:"";position:absolute;width:min(78vw,900px);height:min(58vw,530px);border:1px solid rgba(86,126,150,.19);border-radius:50%;transform:rotateX(68deg) translateY(12%);box-shadow:0 0 100px rgba(95,147,174,.16),inset 0 0 70px rgba(255,255,255,.6)}
+.hero-sticky:after{content:"";position:absolute;bottom:13%;width:min(60vw,700px);height:12%;border-radius:50%;background:rgba(104,155,181,.22);filter:blur(48px)}
+#car3d{position:absolute;inset:13% 12% 24%;width:76%;height:63%;z-index:2;display:block;touch-action:pan-y}
+.hero-copy{position:absolute;z-index:4;left:0;right:0;bottom:8%;text-align:center;pointer-events:none;transition:opacity .25s}
+.hero-overline,.eyebrow{font-size:11px;letter-spacing:.23em;text-transform:uppercase;color:#62869b;font-weight:700}
+.hero h1{font-size:clamp(44px,7vw,86px);line-height:1.04;letter-spacing:-.06em;font-weight:700;margin:14px 0 10px;color:#1e2e39}.hero h1 span{color:#7097ad}
+.hero-sub{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5f7481}
+.car-status{position:absolute;z-index:6;left:50%;top:13%;transform:translateX(-50%);font-size:9px;letter-spacing:.14em;color:#557486;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.92);padding:9px 15px;border-radius:30px;white-space:nowrap;backdrop-filter:blur(14px)}
+.scroll-hint{position:absolute;z-index:5;bottom:22px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.2em;color:#607987;display:flex;align-items:center;gap:10px}.scroll-hint i{display:block;width:34px;height:1px;background:linear-gradient(90deg,transparent,#6d9bb3);animation:hint 1.8s ease-in-out infinite}
+@keyframes hint{50%{transform:scaleX(.35);opacity:.4}}
+.glass{background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(255,255,255,.38));border:1px solid rgba(255,255,255,.86);box-shadow:inset 0 1px 0 rgba(255,255,255,.92),0 20px 55px rgba(49,75,91,.12);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%)}
+.section{padding:78px 0;position:relative;isolation:isolate}
+.intro{padding-top:64px;background:radial-gradient(ellipse at 8% 35%,rgba(166,199,216,.35),transparent 48%),linear-gradient(125deg,rgba(236,243,247,.7),rgba(215,229,237,.55))}
+.intro-panel{border-radius:30px;padding:clamp(28px,5vw,66px);display:grid;grid-template-columns:1fr .8fr;gap:52px;align-items:end;position:relative;overflow:hidden}
+.intro-panel:after{content:"";position:absolute;width:340px;height:340px;right:-120px;top:-200px;border-radius:50%;background:rgba(127,177,202,.24);filter:blur(45px);pointer-events:none}
+.intro h2,.section-title{font-size:clamp(38px,5.4vw,68px);line-height:1.06;letter-spacing:-.06em;font-weight:700;margin:14px 0 0;color:#20313c}
+.intro p,.section-desc{font-size:14px;line-height:1.85;color:#5c6f7b;max-width:470px;margin:0}
+.services{padding-top:76px;padding-bottom:88px;background:radial-gradient(ellipse at 85% 10%,rgba(165,194,210,.48),transparent 42%),linear-gradient(145deg,#e7eef2,#d8e4eb 52%,#edf2f4)}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:34px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:stretch}
+.service{min-width:0;min-height:0;padding:0;border-radius:25px;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(145deg,rgba(255,255,255,.74),rgba(230,239,244,.48));border:1px solid rgba(255,255,255,.9);box-shadow:0 16px 42px rgba(53,79,94,.11),inset 0 1px 0 #fff;cursor:pointer;transition:transform .45s cubic-bezier(.2,.75,.2,1),box-shadow .45s,border-color .4s}
+.service:hover{transform:translateY(-7px);box-shadow:0 25px 55px rgba(53,79,94,.18);border-color:#fff}
+.service:before{display:none}
+.service-photo{height:205px;min-height:205px;flex:0 0 205px;margin:0;position:relative;overflow:hidden;background:linear-gradient(135deg,#c8d9e2,#9fb6c4)}
+.service-photo img{display:block!important;visibility:visible!important;opacity:1!important;width:100%;height:100%;min-height:100%;object-fit:cover;object-position:center;filter:saturate(.88) contrast(1.03);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.service:hover .service-photo img{transform:scale(1.06)}
+.service-photo:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(22,43,57,.18));pointer-events:none}
+.service-photo.photo-fallback{display:grid;place-items:center;background:radial-gradient(ellipse at 50% 35%,#d8e6ed,#9fb6c4)}
+.service-photo.photo-fallback:before{content:"SL · DETAILING68";position:absolute;z-index:1;color:rgba(255,255,255,.9);font-size:12px;font-weight:800;letter-spacing:.2em}
+.service-content{padding:22px 23px 21px;display:flex;flex-direction:column;flex:1;min-height:205px}
+.service-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.service-num{font-size:10px;letter-spacing:.14em;color:#698291;font-weight:800}
+.service-icon{width:40px;height:40px;flex:0 0 40px;border-radius:13px;display:grid;place-items:center;border:1px solid rgba(111,151,174,.25);background:rgba(238,246,250,.75);color:#668ca3;font-size:18px;box-shadow:inset 0 1px 0 #fff}
+.service h3{font-size:19px;line-height:1.32;letter-spacing:-.025em;color:#243540;margin:15px 0 8px;min-height:0}
+.service p{font-size:13px;line-height:1.7;color:#60717c;margin:0}
+.service-more{margin-top:auto;padding-top:19px;display:flex;align-items:center;justify-content:space-between;color:#5c879e;font-size:11px;font-weight:800;letter-spacing:.03em}.service-more b{font-size:17px;font-weight:500}
 .service-link{display:none}
-.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:22px}
-.section-head{align-items:flex-end}
-.method-visual{background:radial-gradient(ellipse at 50% 45%,rgba(255,255,255,.96),rgba(206,222,231,.72));border:1px solid rgba(255,255,255,.85);box-shadow:0 22px 60px rgba(65,88,105,.12)}
-.method-visual:before,.method-visual:after{border-color:rgba(91,130,152,.2)}
-.monogram{color:rgba(91,132,155,.72);text-shadow:0 0 65px rgba(112,163,190,.22)}
-.step{border-color:rgba(95,124,143,.17)}.step h3{color:#243541}.step p{color:#657581}
-.about-panel,.contact-panel{background:linear-gradient(135deg,rgba(255,255,255,.77),rgba(255,255,255,.4));border-color:rgba(255,255,255,.85);box-shadow:0 22px 60px rgba(65,88,105,.1),inset 0 1px 0 #fff}
-.about-panel p,.contact-action p{color:#62727e}.number{background:rgba(255,255,255,.52);border-color:rgba(255,255,255,.85)}.number b{color:#243744}.number span{color:#718390}
-.contact-details a,.contact-details div{color:#304552}.contact-icon{border-color:rgba(107,145,166,.22);background:rgba(255,255,255,.55);color:#648ca3}
-.contact-action{background:rgba(255,255,255,.45);border-color:rgba(255,255,255,.78)}.contact-action h3{color:#1d2d38}
-.button{background:linear-gradient(135deg,#547f98,#7fa9bf);color:#fff;box-shadow:0 9px 26px rgba(87,132,158,.22)}.button.secondary{background:rgba(255,255,255,.52);color:#36566a;border-color:rgba(116,154,175,.28)}
-footer{border-color:rgba(102,133,151,.2);color:#71818d}
-.modal-backdrop{background:rgba(24,39,49,.46);backdrop-filter:blur(15px)}.modal-panel{background:linear-gradient(135deg,rgba(255,255,255,.94),rgba(238,245,249,.83));border-color:#fff;box-shadow:0 35px 100px rgba(25,46,60,.22)}.modal-panel h2{color:#1a2b37}.modal-panel p{color:#63737e}.modal-price{color:#628da5}.modal-close{color:#294252;border-color:rgba(104,146,169,.3);background:rgba(255,255,255,.7)}
-@media(max-width:1000px){.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.service-photo{height:175px;flex-basis:175px}}
-@media(max-width:640px){
- .wrap{width:calc(100% - 32px)}.topbar{padding:18px 0}.top-note{font-size:7px;letter-spacing:.1em}
- .hero{height:145svh}.hero-sticky{height:100svh}.hero-copy{bottom:14%;padding:0 20px}.hero h1{font-size:clamp(36px,10vw,49px);line-height:1.08;letter-spacing:-.06em}.hero-sub{font-size:8px;line-height:1.7;letter-spacing:.09em}
- #car3d{inset:16% 0 28%;width:100%;height:56%}.car-status{top:13%;font-size:7px;padding:8px 11px}
- .section{padding:64px 0}.intro{padding-top:55px}.intro-panel{grid-template-columns:1fr;gap:22px;padding:27px 22px;border-radius:22px}.intro h2,.section-title{font-size:clamp(34px,9vw,44px);line-height:1.08}
- .section-head{display:block;margin-bottom:25px}.section-head .section-desc{margin-top:16px}
- .cards{grid-template-columns:minmax(0,1fr);gap:17px}.service{width:100%;border-radius:21px}.service-photo{height:190px;flex-basis:190px}.service-content{padding:19px 20px 18px;min-height:210px}.service h3{font-size:17px;min-height:0;margin:15px 0 8px}.service p{font-size:11px;line-height:1.75}.service-more{padding-top:18px}
- .method{grid-template-columns:1fr;gap:28px}.method-visual{min-height:250px}.about-panel,.contact-panel{grid-template-columns:1fr;gap:25px;padding:25px 21px;border-radius:22px}.numbers{gap:7px}.number{padding:13px 9px}.number b{font-size:18px}.number span{font-size:7px}
- .contact-action{padding:22px}.button{min-height:44px;padding:0 15px;font-size:9px}.button.secondary{margin:10px 0 0 0}
- .modal-panel{padding:29px 22px;border-radius:22px}.modal-panel h2{font-size:29px}
-}
-@media(prefers-reduced-motion:reduce){.service,.service-photo img{transition:none!important}}
-
-/* Reliable visibility and balanced pearl palette */
-:root{--bg:#e7edf1;--ink:#1d2a34;--muted:#647480;--ice:#dbe8ef;--cyan:#789caf;--line:rgba(87,112,128,.16);--glass:rgba(255,255,255,.55)}
-body{background:#e7edf1;color:#1d2a34}
-.hero-sticky{background:radial-gradient(ellipse at 50% 45%,#f8fafb 0%,#e8eff3 49%,#dce6ec 100%)}
-.hero h1{color:#1d2a34}.hero h1 span{color:#7398ad}
-.cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.service{min-width:0;min-height:0;align-self:stretch}
-.service-photo{display:block!important;position:relative;height:205px;min-height:205px;flex:0 0 205px;overflow:hidden;background:#d3dee5}
-.service-photo img{display:block!important;visibility:visible!important;opacity:1!important;width:100%;height:100%;min-height:205px;object-fit:cover;object-position:center}
-#services .reveal{opacity:1;transform:none}
-@media(max-width:1000px){.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.service-photo{height:185px;min-height:185px;flex-basis:185px}.service-photo img{min-height:185px}}
-@media(max-width:640px){.cards{grid-template-columns:minmax(0,1fr);gap:17px}.service-photo{height:205px;min-height:205px;flex-basis:205px}.service-photo img{min-height:205px}.hero-sticky{background:radial-gradient(ellipse at 50% 44%,#f8fafb,#e4edf2 70%,#dce6ec)}}
-
-/* Readable typography and calm silver-blue glass */
-:root{--bg:#e9edf0;--ink:#202b33;--muted:#5c6972;--ice:#dfe8ed;--cyan:#7395a8;--line:rgba(61,81,94,.16);--glass:rgba(255,255,255,.62)}
-html,body{background:#e9edf0;color:#202b33}
-body{font-size:16px;line-height:1.65}
-body:before{background:radial-gradient(ellipse at 15% 0%,rgba(255,255,255,.98),transparent 40%),radial-gradient(ellipse at 90% 65%,rgba(177,198,210,.32),transparent 42%),linear-gradient(145deg,#edf1f3,#e3e9ed)}
-.topbar{padding:24px 0}.brand{font-size:15px;letter-spacing:.14em;color:#24343f}.top-note{font-size:10px;color:#617481;letter-spacing:.13em}
-.hero-sticky{background:radial-gradient(ellipse at 50% 45%,#fbfcfc 0%,#e8eef1 50%,#dce5ea 100%)}
-.hero-sticky:before{border-color:rgba(80,108,125,.17);box-shadow:0 0 90px rgba(95,137,160,.13),inset 0 0 70px rgba(255,255,255,.5)}
-.hero-sticky:after{background:rgba(120,158,178,.18)}
-.hero-overline{font-size:11px;color:#58788a;letter-spacing:.23em}.hero h1{font-size:clamp(44px,7.2vw,88px);font-weight:700;line-height:1.08;color:#202d36;letter-spacing:-.055em;text-shadow:0 3px 22px rgba(255,255,255,.8)}.hero h1 span{color:#66899e}.hero-sub{font-size:12px;letter-spacing:.12em;color:#586d7a}.rotate-hint{font-size:10px;color:#607f91}.scroll-hint{font-size:10px;color:#607582}
-.car-status{color:#526e7e;background:rgba(255,255,255,.64);border-color:rgba(255,255,255,.92);font-size:10px}
-.glass{background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(255,255,255,.48));border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.98),0 20px 55px rgba(55,77,91,.1);backdrop-filter:blur(25px) saturate(135%);-webkit-backdrop-filter:blur(25px) saturate(135%)}
-.eyebrow{font-size:11px;color:#63889e;letter-spacing:.2em}.intro h2,.section-title{font-size:clamp(40px,5.8vw,70px);font-weight:700;line-height:1.08;color:#202d36;letter-spacing:-.055em}.intro p,.section-desc{font-size:15px;line-height:1.85;color:#596a75}
-.services{padding-top:85px}.section-head{margin-bottom:42px}.cards{gap:24px}
-.service{background:linear-gradient(145deg,rgba(255,255,255,.87),rgba(255,255,255,.57));border-color:rgba(255,255,255,.96);box-shadow:0 16px 45px rgba(58,78,91,.1),inset 0 1px 0 #fff}
-.service-photo{height:215px;min-height:215px;flex-basis:215px;background:#d2dde4}
-.service-photo img{width:100%;height:100%;min-height:215px;object-fit:cover;display:block!important;visibility:visible!important;opacity:1!important}
-.service-content{padding:24px 25px 23px;min-height:235px}
-.service-num{font-size:11px;color:#617b8a;letter-spacing:.14em}
-.service-icon{width:44px;height:44px;color:#668da3;background:rgba(228,239,245,.85);border-color:rgba(102,141,163,.25)}
-.service h3{font-size:21px;line-height:1.3;letter-spacing:-.025em;color:#24333d;margin:18px 0 10px;min-height:56px}
-.service p{font-size:14px;line-height:1.7;color:#5b6c77}
-.service-more{font-size:12px;color:#5d879e}
-.step h3{font-size:16px;color:#24343e}.step p{font-size:14px;color:#5e6e78}.step b{font-size:12px;color:#6d94a9}
-.about-panel p{font-size:15px;color:#596a75}.number b{font-size:27px;color:#273843}.number span{font-size:10px;color:#687b87}
-.contact-details a,.contact-details div{font-size:14px;color:#354a57}.contact-action h3{font-size:24px;color:#25343e}.contact-action p{font-size:14px;color:#5c6d77}
-.button{font-size:13px;background:linear-gradient(135deg,#668ca2,#8eafc0);color:white}.button.secondary{background:rgba(255,255,255,.72);color:#3b5a6c}
-footer{font-size:12px;color:#61737f;border-color:rgba(78,105,121,.2)}
-.modal-panel h2{font-size:clamp(30px,5vw,42px);color:#24343e}.modal-price{font-size:24px;color:#62879c}.modal-panel p{font-size:15px;line-height:1.8;color:#596a75}.modal-close{color:#344e5e}
-@media(max-width:850px){.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.service-photo{height:190px;min-height:190px;flex-basis:190px}.service-content{padding:20px;min-height:240px}}
-@media(max-width:560px){
- .wrap{width:calc(100% - 32px)}.topbar{padding:18px 0}.brand{font-size:13px}.top-note{font-size:8px}
- .hero h1{font-size:clamp(42px,11vw,58px)}.hero-overline{font-size:10px}.hero-sub{font-size:10px;line-height:1.6}.rotate-hint{font-size:9px}
- .intro h2,.section-title{font-size:clamp(36px,9vw,46px)}.intro p,.section-desc{font-size:14px}
- .cards{grid-template-columns:minmax(0,1fr);gap:18px}.service-photo{height:220px;min-height:220px;flex-basis:220px}.service-content{padding:21px 22px;min-height:0}.service h3{font-size:21px;min-height:0;margin:15px 0 8px}.service p{font-size:14px;line-height:1.7}.service-more{font-size:12px;padding-top:18px}
- .modal-panel h2{font-size:30px}.modal-panel p{font-size:14px}.modal-price{font-size:21px}
- .step h3{font-size:15px}.step p{font-size:13px}.contact-details a,.contact-details div{font-size:13px}.contact-action h3{font-size:22px}.contact-action p{font-size:13px}
-}
-
-/* Performance + compact premium layout */
-:root{--page-tone:#e8edf0;--scroll-tone:0}
-html,body{background:var(--page-tone)}
-body:before{background:
- radial-gradient(ellipse at 12% 4%,rgba(255,255,255,.98),transparent 39%),
- radial-gradient(ellipse at 88% 26%,rgba(173,196,209,.34),transparent 42%),
- linear-gradient(145deg,#f0f3f5,#e4eaee 55%,#e9eef1);
- transition:filter .35s ease}
-.hero-sticky{background:radial-gradient(ellipse at 50% 45%,#fbfcfd 0%,#e8eef2 52%,#dce5eb 100%)}
-.section{padding-top:64px;padding-bottom:64px}
-.intro{padding-top:48px}
-.services{padding-top:54px}
-.section-head{margin-bottom:28px}
-.cards{gap:17px}
-.service-photo{height:190px;min-height:190px;flex-basis:190px}
-.service-content{min-height:205px;padding:19px 21px}
-.service h3{font-size:19px;min-height:0;margin:13px 0 7px}
-.service p{font-size:13px;line-height:1.62}
-#car3d{inset:4% -3% 8%;width:106%;height:92%;transform:scale(1.08);transform-origin:center}
-.hero{height:142svh}
-.hero-sticky{overflow:hidden}
-.hero-copy{bottom:7%}
-.hero h1{font-size:clamp(43px,7.5vw,88px)}
-.car-status{top:12%;font-size:10px}
-.service-photo img{content-visibility:auto}
-.photo-fallback{display:grid;place-items:center;background:linear-gradient(135deg,#dce6eb,#b8cbd6)}
-.photo-fallback:before{content:"SL DETAILING68";font-size:12px;letter-spacing:.18em;color:#58778a}
-@media(max-width:850px){.section{padding:54px 0}.intro{padding-top:38px}.cards{gap:14px}.service-photo{height:175px;min-height:175px;flex-basis:175px}.service-content{min-height:200px}}
-@media(max-width:640px){
- .hero{height:135svh}
- #car3d{inset:10% -8% 22%;width:116%;height:70%;transform:scale(1.1)}
- .hero-copy{bottom:11%}
- .section{padding:46px 0}
- .intro{padding-top:34px}
- .services{padding-top:42px}
- .section-head{margin-bottom:21px}
- .cards{gap:14px}
- .service-photo{height:190px;min-height:190px;flex-basis:190px}
- .service-content{min-height:0;padding:18px 19px}
- .service h3{font-size:19px}
- .service p{font-size:13px}
- .method-visual{min-height:210px}
-}
-@media(prefers-reduced-motion:reduce){.section,.service{transition:none!important}}
-
-
-/* Adaptive mobile 3D and scroll-tinted pearl backgrounds */
-body{transition:background-color .7s ease}
-body:before{background:
- radial-gradient(ellipse at 14% 5%,rgba(255,255,255,.98),transparent 40%),
- radial-gradient(ellipse at 88% 32%,rgba(166,195,211,.34),transparent 43%),
- linear-gradient(145deg,#f0f4f6,#e1e9ee 56%,#eef2f4);
- transition:background .9s ease}
-.section:nth-of-type(odd){background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(207,222,231,.12))}
-.section:nth-of-type(even){background:linear-gradient(180deg,rgba(220,232,239,.12),rgba(255,255,255,.16))}
-.service-photo img{image-rendering:auto}
-@media(max-width:700px){
- #car3d{inset:9% -14% 22%;width:128%;height:72%;transform:none}
- .hero-sticky:after{filter:blur(34px)}
- .service-photo{height:190px;min-height:190px;flex-basis:190px}
-}
-@media(max-width:420px){
- #car3d{inset:12% -18% 24%;width:136%;height:66%}
- .car-status{top:10%}
-}
-
-
-/* Speed, spacing and section polish */
-.hero{height:122svh}#car3d{inset:15% 8% 22%;width:84%;height:63%}.hero-copy{bottom:10%}.section{padding:76px 0}.intro{padding-top:66px}.services{padding-top:54px}.section-head{margin-bottom:26px}.cards{gap:16px}.service-photo{height:178px;flex-basis:178px}.service-content{min-height:185px;padding:18px 20px 17px}.service h3{margin:14px 0 8px;min-height:0}.method-visual{min-height:350px}.contact{padding-top:50px}.reveal{transform:translateY(20px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.75,.2,1)}#approach{background:radial-gradient(ellipse at 12% 50%,rgba(176,207,222,.32),transparent 44%)}#about{background:linear-gradient(115deg,rgba(255,255,255,.35),rgba(193,215,228,.28),rgba(255,255,255,.16))}#contacts{background:radial-gradient(ellipse at 88% 55%,rgba(145,185,207,.3),transparent 48%)}#services{background:linear-gradient(145deg,rgba(255,255,255,.28),rgba(197,217,229,.22),rgba(255,255,255,.15))}@media(min-width:1001px){#car3d{inset:13% 13% 22%;width:74%;height:65%}.cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.service-photo{height:190px;flex-basis:190px}}@media(max-width:1000px){.hero{height:116svh}#car3d{inset:17% 3% 25%;width:94%;height:58%}.section{padding:64px 0}}@media(max-width:640px){.hero{height:112svh}#car3d{inset:20% 8% 31%;width:84%;height:49%}.hero-copy{bottom:13%}.section{padding:52px 0}.intro{padding-top:48px}.services{padding-top:38px}.section-head{margin-bottom:20px}.cards{grid-template-columns:1fr;gap:13px}.service-photo{height:165px;flex-basis:165px}.service-content{min-height:160px;padding:16px 18px}.method-visual{min-height:230px}.contact{padding-top:34px}.car-status{top:14%}}
+#approach{background:radial-gradient(ellipse at 15% 40%,rgba(195,187,218,.35),transparent 42%),linear-gradient(125deg,#e9e8f0,#dce5ed 58%,#e9f0f3)}
+.method{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:center}
+.method-visual{min-height:390px;border-radius:30px;position:relative;overflow:hidden;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 42%,rgba(255,255,255,.95),rgba(183,204,217,.75));border:1px solid rgba(255,255,255,.9);box-shadow:0 22px 60px rgba(65,88,105,.13)}
+.method-visual:before,.method-visual:after{content:"";position:absolute;width:72%;aspect-ratio:1;border:1px solid rgba(91,130,152,.2);border-radius:50%;transform:rotateX(65deg)}
+.method-visual:after{width:52%;transform:rotateX(65deg) rotateZ(35deg)}
+.monogram{font-size:clamp(100px,18vw,190px);font-weight:800;letter-spacing:-.1em;color:rgba(85,129,153,.7);text-shadow:0 0 60px rgba(112,163,190,.22);z-index:1}
+.steps{margin-top:30px}.step{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid rgba(95,124,143,.17)}.step b{font-size:12px;color:#6b91a7}.step h3{font-size:16px;color:#263944;margin:0 0 5px}.step p{font-size:13px;color:#62737d;line-height:1.7;margin:0}
+#about{background:radial-gradient(ellipse at 90% 55%,rgba(159,203,197,.36),transparent 44%),linear-gradient(135deg,#e4eeeb,#dce8e9 48%,#edf1f2)}
+.about-panel,.contact-panel{border-radius:30px;padding:clamp(28px,5vw,62px);display:grid;grid-template-columns:1fr 1fr;gap:50px;background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(231,241,240,.5));border:1px solid rgba(255,255,255,.9);box-shadow:0 22px 60px rgba(65,88,105,.1),inset 0 1px 0 #fff}
+.about-panel p,.contact-action p{font-size:14px;line-height:1.85;color:#5c6e76;margin:0}
+.numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}
+.number{padding:16px 12px;border-radius:16px;background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.8);display:flex;flex-direction:column;gap:3px}
+.number b{font-size:26px;color:#263b47}.number span{font-size:9px;color:#6a7d86}
+#contacts{padding-top:84px;padding-bottom:76px;background:radial-gradient(ellipse at 8% 60%,rgba(224,194,174,.28),transparent 45%),linear-gradient(135deg,#e9edf0,#e2e6e9 52%,#dce8ed)}
+.contact-panel{align-items:center;background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(240,242,241,.56))}
+.contact-details{display:grid;gap:13px;margin-top:25px}.contact-details a,.contact-details div{display:flex;align-items:center;gap:12px;font-size:13px;color:#354b58}
+.contact-icon{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:rgba(255,255,255,.65);border:1px solid rgba(107,145,166,.22);color:#648ca3;font-size:11px;font-weight:800}
+.contact-action{padding:27px;border-radius:22px;background:rgba(255,255,255,.46);border:1px solid rgba(255,255,255,.82)}
+.contact-action h3{font-size:23px;line-height:1.2;color:#243641;margin:0 0 12px}
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;margin-top:18px;border-radius:14px;background:linear-gradient(135deg,#638aa1,#8bafc0);color:white;font-size:12px;font-weight:800;box-shadow:0 9px 26px rgba(87,132,158,.2);border:1px solid rgba(255,255,255,.35)}
+.button.secondary{margin-left:8px;background:rgba(255,255,255,.65);color:#38586a;border:1px solid rgba(116,154,175,.28);box-shadow:none}
+footer{padding:25px 0;border-top:1px solid rgba(102,133,151,.2);color:#6b7c87;font-size:11px;background:linear-gradient(120deg,#dfe7eb,#e9edef)}
+.footer-in{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.service-modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.service-modal.open{opacity:1;visibility:visible}.modal-backdrop{position:absolute;inset:0;background:rgba(24,39,49,.48);backdrop-filter:blur(14px)}
+.modal-panel{position:relative;width:min(520px,100%);border-radius:26px;padding:34px;background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(232,241,246,.9));border:1px solid #fff;box-shadow:0 35px 100px rgba(25,46,60,.22);z-index:1;transform:translateY(18px) scale(.98);transition:transform .35s}
+.service-modal.open .modal-panel{transform:none}.modal-close{position:absolute;right:16px;top:13px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(104,146,169,.3);background:rgba(255,255,255,.7);color:#344e5e;font-size:22px;cursor:pointer}
+.modal-panel h2{font-size:clamp(28px,5vw,40px);line-height:1.1;letter-spacing:-.05em;color:#24343e;margin:15px 32px 12px 0}.modal-price{font-size:22px;font-weight:800;color:#62879c;margin-bottom:15px}.modal-panel p{font-size:14px;line-height:1.8;color:#596a75;margin:0 0 22px}
+.reveal{opacity:1;transform:none}.reveal.animate-ready{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.75,.2,1)}.reveal.animate-ready.visible{opacity:1;transform:translateY(0)}
+@media(min-width:1200px){.service-photo{height:220px;min-height:220px;flex-basis:220px}.service-content{min-height:220px}}
+@media(max-width:900px){.wrap{width:calc(100% - 40px)}.section{padding:62px 0}.intro{padding-top:46px}.intro-panel,.method,.about-panel,.contact-panel{grid-template-columns:1fr;gap:26px}.intro-panel{padding:34px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.method-visual{min-height:290px}.hero{height:118svh}#car3d{inset:16% 7% 25%;width:86%;height:59%}}
+@media(max-width:640px){.wrap{width:calc(100% - 32px)}.topbar{padding:18px 0}.brand{font-size:12px}.top-note{font-size:8px;letter-spacing:.08em}.hero{height:112svh}.hero-sticky{height:100svh}.hero-sticky:before{width:112vw;height:72vw}.hero-sticky:after{width:90vw;bottom:21%;filter:blur(35px)}#car3d{inset:19% 6% 29%;width:88%;height:52%}.hero-copy{bottom:13%;padding:0 18px}.hero h1{font-size:clamp(39px,10vw,54px)}.hero-overline{font-size:9px}.hero-sub{font-size:9px;line-height:1.6}.car-status{top:13%;font-size:7px;padding:8px 11px}.section{padding:48px 0}.intro{padding-top:34px}.intro-panel{padding:25px 21px;border-radius:22px}.intro h2,.section-title{font-size:clamp(35px,9vw,46px)}.intro p,.section-desc{font-size:13px}.section-head{display:block;margin-bottom:23px}.section-head .section-desc{margin-top:12px}.cards{grid-template-columns:1fr;gap:16px}.service{border-radius:21px}.service-photo{height:195px;min-height:195px;flex-basis:195px}.service-content{padding:18px 19px;min-height:0}.service h3{font-size:19px;margin:13px 0 7px}.service p{font-size:13px}.service-more{padding-top:17px}.method-visual{min-height:220px}.about-panel,.contact-panel{padding:24px 21px;border-radius:22px}.numbers{gap:7px}.number{padding:12px 8px}.number b{font-size:21px}.number span{font-size:8px}.contact-action{padding:22px}.contact-action h3{font-size:21px}.button{min-height:45px;padding:0 16px;font-size:11px}.button.secondary{margin-left:0}.footer-in{flex-direction:column;align-items:flex-start}.modal-panel{padding:27px 22px;border-radius:22px}.modal-panel h2{font-size:29px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.service,.service-photo img{transition:none!important}.reveal.animate-ready{opacity:1;transform:none}.scroll-hint i{animation:none}}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
@@ -223,13 +98,13 @@ body:before{background:
 <section class="hero" id="home"><div class="hero-sticky" id="heroSticky"><canvas id="car3d" aria-label="Интерактивная трёхмерная модель автомобиля"></canvas><div class="car-status" id="carStatus">ЗАГРУЖАЕМ 3D-МОДЕЛЬ…</div><div class="hero-copy" id="heroCopy"><div class="hero-overline">SL.Detailing68 · Тамбов</div><h1>Рады видеть вас<br><span>в SL.Detailing68</span></h1><div class="hero-sub">Уход, который подчёркивает характер вашего автомобиля</div><div class="rotate-hint">↔ ПОТЯНИТЕ, ЧТОБЫ РАССМОТРЕТЬ АВТОМОБИЛЬ</div></div><div class="scroll-hint"><i></i> ЛИСТАЙТЕ ВНИЗ <i></i></div></div></section>
 <section class="section intro"><div class="wrap"><div class="intro-panel glass reveal"><div><div class="eyebrow">Beyond the ordinary</div><h2>Не просто чистота.<br><span style="color:#a8cde1">Совершенство.</span></h2></div><p>Премиальный уход за автомобилем начинается с внимания к деталям. Защищаем кузов, возвращаем чистоту и создаём комфорт, который ощущается каждый день.</p></div></div></section>
 <section class="section services" id="services"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow">Наши решения</div><h2 class="section-title">Каждой детали —<br>свой уход.</h2></div><p class="section-desc">Продуманные услуги для тех, кто ценит внешний вид, комфорт и состояние своего автомобиля.</p></div><div class="cards">
-<article class="service glass reveal" data-service="0"><div class="service-photo"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=720&q=64" alt="Защита кузова автомобиля плёнкой" loading="eager" decoding="async" fetchpriority="high" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">01 / ЗАЩИТА</span><span class="service-icon">◇</span></div><h3>Антигравийная защита кузова</h3><p>Защитная плёнка помогает уберечь лакокрасочное покрытие от сколов и царапин.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="1"><div class="service-photo"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=720&q=64" alt="Глянцевый кузов после защитной обработки" loading="eager" decoding="async" fetchpriority="auto" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">02 / ПОКРЫТИЕ</span><span class="service-icon">✧</span></div><h3>Защитное покрытие</h3><p>Защитный состав для блеска кузова и более простого ухода за автомобилем.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="2"><div class="service-photo"><img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=720&q=64" alt="Салон современного автомобиля" loading="eager" decoding="async" fetchpriority="high" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">03 / КОМФОРТ</span><span class="service-icon">⌁</span></div><h3>Шумоизоляция автомобиля</h3><p>Снижение дорожного шума и вибраций для более комфортных поездок.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="3"><div class="service-photo"><img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=720&q=64" alt="Уход за подкапотным пространством" loading="eager" decoding="async" fetchpriority="high" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">04 / МОТОР</span><span class="service-icon">◉</span></div><h3>Химчистка мотора</h3><p>Аккуратная очистка подкапотного пространства с учётом особенностей автомобиля.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="4"><div class="service-photo"><img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=720&q=64" alt="Чистый салон автомобиля" loading="eager" decoding="async" fetchpriority="high" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">05 / ИНТЕРЬЕР</span><span class="service-icon">⌂</span></div><h3>Химчистка салона</h3><p>Глубокая очистка обивки, ковров и труднодоступных зон интерьера.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="5"><div class="service-photo"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=720&q=64" alt="Полировка и покрытие кузова" loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">06 / БЛЕСК</span><span class="service-icon">✦</span></div><h3>Покрытие кузова</h3><p>Финишный уход за лакокрасочным покрытием для выразительного внешнего вида.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="6"><div class="service-photo"><img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=720&q=64" alt="Детейлинг-мойка автомобиля" loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">07 / УХОД</span><span class="service-icon">≋</span></div><h3>Detailing wash</h3><p>Деликатная мойка кузова, колёс и внешних элементов с вниманием к деталям.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="0"><div class="service-photo"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=680&q=58" alt="Защита кузова автомобиля плёнкой" loading="eager" decoding="async" fetchpriority="auto" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.parentElement.classList.add('photo-fallback');this.remove()"></div><div class="service-content"><div class="service-top"><span class="service-num">01 / ЗАЩИТА</span><span class="service-icon">◇</span></div><h3>Антигравийная защита кузова</h3><p>Защитная плёнка помогает уберечь лакокрасочное покрытие от сколов и царапин.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="1"><div class="service-photo"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=680&q=58" alt="Глянцевый кузов после защитной обработки" loading="eager" decoding="async" fetchpriority="auto" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">02 / ПОКРЫТИЕ</span><span class="service-icon">✧</span></div><h3>Защитное покрытие</h3><p>Защитный состав для блеска кузова и более простого ухода за автомобилем.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="2"><div class="service-photo"><img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=680&q=58" alt="Салон современного автомобиля" loading="eager" decoding="async" fetchpriority="auto" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">03 / КОМФОРТ</span><span class="service-icon">⌁</span></div><h3>Шумоизоляция автомобиля</h3><p>Снижение дорожного шума и вибраций для более комфортных поездок.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="3"><div class="service-photo"><img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=680&q=58" alt="Уход за подкапотным пространством" loading="eager" decoding="async" fetchpriority="auto" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">04 / МОТОР</span><span class="service-icon">◉</span></div><h3>Химчистка мотора</h3><p>Аккуратная очистка подкапотного пространства с учётом особенностей автомобиля.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="4"><div class="service-photo"><img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=680&q=58" alt="Чистый салон автомобиля" loading="eager" decoding="async" fetchpriority="auto" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">05 / ИНТЕРЬЕР</span><span class="service-icon">⌂</span></div><h3>Химчистка салона</h3><p>Глубокая очистка обивки, ковров и труднодоступных зон интерьера.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="5"><div class="service-photo"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=680&q=58" alt="Полировка и покрытие кузова" loading="eager" decoding="async" fetchpriority="auto" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">06 / БЛЕСК</span><span class="service-icon">✦</span></div><h3>Покрытие кузова</h3><p>Финишный уход за лакокрасочным покрытием для выразительного внешнего вида.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="6"><div class="service-photo"><img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=680&q=58" alt="Детейлинг-мойка автомобиля" loading="eager" decoding="async" fetchpriority="auto" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">07 / УХОД</span><span class="service-icon">≋</span></div><h3>Detailing wash</h3><p>Деликатная мойка кузова, колёс и внешних элементов с вниманием к деталям.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
 </div></div></section>
 <section class="section" id="approach"><div class="wrap method"><div class="method-visual glass reveal"><div class="monogram">SL.</div></div><div class="method-copy reveal"><div class="eyebrow">Наш подход</div><h2 class="section-title">Красота —<br>в точности.</h2><p class="section-desc">Подбираем уход под состояние автомобиля и ваши задачи. Никаких случайных решений — только внимательная работа с каждой поверхностью.</p><div class="steps"><div class="step"><b>01</b><div><h3>Осмотр и консультация</h3><p>Обсуждаем состояние автомобиля и желаемый результат.</p></div></div><div class="step"><b>02</b><div><h3>Подбор решения</h3><p>Определяем подходящие услуги и материалы.</p></div></div><div class="step"><b>03</b><div><h3>Работа с деталями</h3><p>Аккуратно выполняем выбранные процедуры.</p></div></div></div></div></div></section>
 <section class="section" id="about"><div class="wrap"><div class="about-panel glass reveal"><div><div class="eyebrow">SL.Detailing68 · Тамбов</div><h2 class="section-title">Ваш автомобиль.<br><span style="color:#a8cde1">В лучшей форме.</span></h2></div><div><p>Студия ухода за автомобилями SL.Detailing68. Защита кузова, глубокая очистка и забота о комфорте — чтобы автомобиль радовал своим видом и состоянием каждый день.</p><div class="numbers"><div class="number"><b>07</b><span>направлений ухода</span></div><div class="number"><b>360°</b><span>внимание к деталям</span></div><div class="number"><b>68</b><span>Тамбов</span></div></div></div></div></div></section>
@@ -239,6 +114,7 @@ body:before{background:
 document.addEventListener('DOMContentLoaded',function(){
  const items=document.querySelectorAll('.reveal');
  if(!('IntersectionObserver' in window)){items.forEach(el=>el.classList.add('visible'));return;}
+ items.forEach(el=>el.classList.add('animate-ready'));
  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');io.unobserve(entry.target)}}),{threshold:.04,rootMargin:'0px 0px 120px 0px'});
  items.forEach(el=>io.observe(el));
 });
@@ -251,10 +127,10 @@ const canvas=document.querySelector('#car3d'),hero=document.querySelector('#home
 let scene,camera,renderer,car,clock,scrollProgress=0,mouseX=0,mouseY=0,controls;
 try{
  scene=new THREE.Scene();
- camera=new THREE.PerspectiveCamera(32,1,.1,100);camera.position.set(window.innerWidth<700?6.7:7.2,window.innerWidth<700?2.8:3.0,window.innerWidth<700?8.4:9.0);
+ camera=new THREE.PerspectiveCamera(32,1,.1,100);camera.position.set(window.innerWidth<700?7.2:8.0,window.innerWidth<700?3.0:3.2,window.innerWidth<700?9.0:10.0);
  const isMobile=window.matchMedia('(max-width: 700px)').matches;
  renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:!isMobile,powerPreference:'high-performance'});
- renderer.setPixelRatio(Math.min(devicePixelRatio||1,isMobile?.85:1.0));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
+ renderer.setPixelRatio(Math.min(devicePixelRatio||1,isMobile?.72:1.0));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
  controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.enablePan=false;controls.enableZoom=true;controls.touches.ONE=THREE.TOUCH.ROTATE;controls.touches.TWO=THREE.TOUCH.DOLLY_ROTATE;controls.minDistance=window.innerWidth<700?6.2:5.6;controls.maxDistance=window.innerWidth<700?10:12;controls.rotateSpeed=.72;controls.zoomSpeed=.7;controls.minPolarAngle=.82;controls.maxPolarAngle=1.48;controls.target.set(0,.2,0);controls.autoRotate=true;controls.autoRotateSpeed=.32;
  scene.add(new THREE.HemisphereLight(0xd9edff,0x111923,2.2));
  const key=new THREE.DirectionalLight(0xffffff,4);key.position.set(4,7,6);scene.add(key);
@@ -286,7 +162,7 @@ try{
  const loader=new GLTFLoader();
  loader.load('https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/CarConcept/glTF-Binary/CarConcept.glb',gltf=>{
   const model=gltf.scene;const box=new THREE.Box3().setFromObject(model),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());
-  model.position.sub(center);const max=Math.max(size.x,size.y,size.z);const modelScale=5.0/max;model.scale.setScalar(modelScale);model.position.y=-(box.min.y-center.y)*modelScale;model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material){o.material.metalness=Math.max(o.material.metalness||0,.35);o.material.roughness=Math.min(o.material.roughness??.5,.34)}}});
+  model.position.sub(center);const max=Math.max(size.x,size.y,size.z);const modelScale=4.4/max;model.scale.setScalar(modelScale);model.position.y=-(box.min.y-center.y)*modelScale;model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material){o.material.metalness=Math.max(o.material.metalness||0,.35);o.material.roughness=Math.min(o.material.roughness??.5,.34)}}});
   carRoot.clear();carRoot.add(model);carRoot.rotation.y=-.42;document.getElementById('carStatus').textContent='3D-МОДЕЛЬ ГОТОВА · ВРАЩАЙТЕ ПАЛЬЦЕМ';
  },event=>{if(event.total){const pct=Math.round(event.loaded/event.total*100);document.getElementById('carStatus').textContent='ЗАГРУЖАЕМ 3D-МОДЕЛЬ · '+pct+'%';}},error=>{console.error('3D model failed to load',error);document.getElementById('carStatus').textContent='3D-АВТОМОБИЛЬ · МОЖНО ВРАЩАТЬ';});
  carRoot.rotation.y=-.42;carRoot.position.y=-.1;
@@ -294,9 +170,9 @@ try{
  function resize(){const w=canvas.clientWidth||innerWidth,h=canvas.clientHeight||innerHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
  const ro=new ResizeObserver(resize);ro.observe(canvas);resize();
  canvas.style.cursor='grab';canvas.addEventListener('pointerdown',()=>canvas.style.cursor='grabbing');canvas.addEventListener('pointerup',()=>canvas.style.cursor='grab');
- let scrollTick=false;function onScroll(){if(scrollTick)return;scrollTick=true;requestAnimationFrame(()=>{const r=hero.getBoundingClientRect(),travel=hero.offsetHeight-innerHeight;scrollProgress=Math.max(0,Math.min(1,-r.top/Math.max(1,travel)));copy.style.opacity=String(Math.max(0,1-scrollProgress*2.6));const maxScroll=Math.max(1,document.documentElement.scrollHeight-innerHeight);const pageProgress=Math.max(0,Math.min(1,scrollY/maxScroll));document.documentElement.style.setProperty('--page-progress',pageProgress.toFixed(3));document.body.style.backgroundColor=pageProgress<.28?'#e9eef2':pageProgress<.58?'#e4ebef':pageProgress<.82?'#edf0f2':'#e7edf1';scrollTick=false;});}
+ let scrollTick=false;function onScroll(){if(scrollTick)return;scrollTick=true;requestAnimationFrame(()=>{const r=hero.getBoundingClientRect(),travel=hero.offsetHeight-innerHeight;scrollProgress=Math.max(0,Math.min(1,-r.top/Math.max(1,travel)));copy.style.opacity=String(Math.max(0,1-scrollProgress*2.6));const maxScroll=Math.max(1,document.documentElement.scrollHeight-innerHeight);const pageProgress=Math.max(0,Math.min(1,scrollY/maxScroll));document.documentElement.style.setProperty('--page-progress',pageProgress.toFixed(3));document.documentElement.style.setProperty('--scroll-progress',pageProgress.toFixed(3));scrollTick=false;});}
  addEventListener('scroll',onScroll,{passive:true});onScroll();
- let raf=0,lastFrame=0;function frame(now=0){raf=requestAnimationFrame(frame);if(document.hidden)return;if(now-lastFrame<30)return;lastFrame=now;const t=clock.getElapsedTime();const p=scrollProgress;carRoot.position.y=-.1+Math.sin(t*.9)*.025-p*.32;const s=.88-p*.10;carRoot.scale.setScalar(s);controls.target.y=.2-p*.08;controls.update();renderer.render(scene,camera)}document.addEventListener('visibilitychange',()=>{if(!document.hidden){lastFrame=0;}});
+ let raf=0,lastFrame=0;function frame(now=0){raf=requestAnimationFrame(frame);if(document.hidden)return;if(now-lastFrame<30)return;lastFrame=now;const t=clock.getElapsedTime();const p=scrollProgress;carRoot.position.y=-.1+Math.sin(t*.9)*.025-p*.32;const s=.78-p*.08;carRoot.scale.setScalar(s);controls.target.y=.2-p*.08;controls.update();renderer.render(scene,camera)}document.addEventListener('visibilitychange',()=>{if(!document.hidden){lastFrame=0;}});
  frame();
 }catch(e){console.error('3D initialization failed',e);canvas.style.background='radial-gradient(ellipse,rgba(110,175,210,.28),transparent 65%)';try{fallbackCar();}catch(_){ }}
 
