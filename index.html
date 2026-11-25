@@ -100,6 +100,77 @@ footer{padding:25px 0;border-top:1px solid rgba(102,133,151,.2);color:#6b7c87;fo
 }
 @media(min-width:1500px){#car3d{inset:9% 4% 19%;width:92%;height:72%}.services .service-photo{height:270px;min-height:270px;flex-basis:270px}}
 @media(max-width:1000px){.service-photo img{display:block!important;opacity:1!important;visibility:visible!important}}
+
+/* FRAME / SL.Detailing68 premium redesign */
+:root{--ink:#eaf0f4;--muted:#a9b7c2;--accent:#a9d8ee;--max:1240px}
+html,body{background:#0b1118;color:var(--ink)}
+body{font-family:Manrope,Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.62;overflow-x:clip}
+.wrap{width:min(var(--max),calc(100% - 64px))}
+.topbar{position:absolute;padding:26px 0}.brand{color:#f2f6f8;font-size:14px;letter-spacing:.17em}.brand b{color:#9bd1e8}.top-note{color:#9fb1bd}
+.hero{height:118svh;min-height:700px;position:relative}
+.hero-sticky{background:radial-gradient(ellipse at 50% 44%,#263b4c 0%,#172734 36%,#0b121a 78%);isolation:isolate}
+.hero-sticky:before{width:min(82vw,980px);height:min(50vw,560px);border-color:rgba(177,220,241,.18);box-shadow:0 0 110px rgba(96,169,204,.12),inset 0 0 90px rgba(155,207,232,.06)}
+.hero-sticky:after{background:rgba(94,164,198,.24);filter:blur(58px)}
+#car3d{inset:12% 8% 24%;width:84%;height:66%;z-index:2;outline:0}
+.car-status{top:12%;background:rgba(13,27,38,.58);color:#c5e6f4;border:1px solid rgba(174,220,242,.2);box-shadow:0 8px 30px rgba(0,0,0,.12)}
+.hero-copy{bottom:7%}.hero-overline,.eyebrow{color:#9bcbe1;letter-spacing:.2em;font-size:10px}
+.hero h1{color:#f4f8fa;font-weight:700;letter-spacing:-.055em}.hero h1 span{color:#a7d8ee}
+.hero-sub,.scroll-hint{color:#b0c3ce}.rotate-hint{margin-top:20px;color:#8fa8b7;font-size:9px;letter-spacing:.18em}
+.scroll-hint i{background:linear-gradient(90deg,transparent,#9bcce4)}
+.section{padding:74px 0;position:relative;overflow:hidden}
+.section:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.95}
+.intro{padding-top:54px;padding-bottom:70px;background:#111e29}
+.intro:before{background:radial-gradient(ellipse at 12% 30%,rgba(89,146,177,.28),transparent 48%),linear-gradient(115deg,#111e29,#172b38 54%,#101a24)}
+.intro-panel{border-radius:28px;padding:clamp(28px,4vw,54px);grid-template-columns:1.05fr .8fr;gap:42px;background:linear-gradient(135deg,rgba(213,235,246,.11),rgba(126,172,194,.045));border:1px solid rgba(207,235,248,.16);box-shadow:0 24px 80px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.08)}
+.intro h2,.section-title{color:#f1f6f8;font-weight:700;letter-spacing:-.055em}
+.intro p,.section-desc,.about-panel p,.step p,.contact-action p{color:#b0c0ca}
+.services{padding-top:74px;padding-bottom:82px;background:#dbe6ec;color:#1b2b35}
+.services:before{background:radial-gradient(ellipse at 88% 4%,rgba(120,179,207,.42),transparent 38%),radial-gradient(ellipse at 5% 88%,rgba(183,199,213,.48),transparent 42%),linear-gradient(135deg,#e7eef2 0%,#cddde6 48%,#e4ebef 100%)}
+.services .eyebrow{color:#547d92}.services .section-title{color:#1e303b}.services .section-desc{color:#536875}
+.section-head{margin-bottom:30px;align-items:end}
+.cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.service{border-radius:22px;overflow:hidden;background:linear-gradient(145deg,rgba(255,255,255,.84),rgba(239,245,248,.64));border:1px solid rgba(255,255,255,.92);box-shadow:0 16px 42px rgba(31,57,72,.13),inset 0 1px 0 #fff;min-height:420px;transition:transform .4s ease,box-shadow .4s ease}
+.service:hover{transform:translateY(-6px);box-shadow:0 24px 58px rgba(31,57,72,.2)}
+.service-photo{height:230px;min-height:230px;flex:0 0 230px;margin:0;position:relative;overflow:hidden;background:linear-gradient(135deg,#223a49,#7299ac)}
+.service-photo img{position:absolute;inset:0;display:block!important;width:100%;height:100%;min-height:100%;opacity:1!important;visibility:visible!important;object-fit:cover;object-position:center;filter:saturate(.92) contrast(1.04);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.service:hover .service-photo img{transform:scale(1.045)}
+.service-photo:after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(transparent,rgba(6,17,25,.28));pointer-events:none}
+.service-photo.photo-fallback{display:grid;place-items:center;background:radial-gradient(ellipse at 50% 35%,#799eb2,#243d4d 78%)}
+.service-photo.photo-fallback:before{content:"SL · DETAILING68";color:rgba(255,255,255,.8);font-size:11px;letter-spacing:.2em;font-weight:800}
+.service-content{padding:21px 22px 20px;min-height:190px;display:flex;flex-direction:column;flex:1}
+.service-num{color:#6c8c9e;font-size:10px;letter-spacing:.14em;font-weight:800}
+.service-icon{background:rgba(213,231,240,.75);border:1px solid rgba(98,145,169,.2);color:#507c94}
+.service h3{font-size:18px;line-height:1.32;color:#1e303b;margin:14px 0 8px;letter-spacing:-.025em}
+.service p{color:#5d707b;font-size:13px;line-height:1.68;margin:0}
+.service-more{color:#527f98;margin-top:auto;padding-top:17px}
+#approach{background:#101a25;color:#eef4f7}
+#approach:before{background:radial-gradient(ellipse at 15% 30%,rgba(98,106,159,.3),transparent 42%),radial-gradient(ellipse at 85% 75%,rgba(66,129,154,.22),transparent 42%),linear-gradient(125deg,#111b27,#1d2538 55%,#111e2a)}
+.method{gap:58px}.method-visual{min-height:350px;border-radius:28px;background:radial-gradient(ellipse at 50% 42%,rgba(157,192,211,.32),rgba(36,56,75,.58));border:1px solid rgba(208,231,242,.15);box-shadow:0 24px 70px rgba(0,0,0,.2)}
+.method-visual:before,.method-visual:after{border-color:rgba(175,215,234,.22)}.monogram{color:rgba(166,213,235,.78)}
+#approach .section-title{color:#f1f6f8}#approach .eyebrow{color:#a8d1e4}
+.step{border-color:rgba(193,218,231,.14)}.step b{color:#9bc9df}.step h3{color:#edf4f7}
+#about{background:#e5e9e6;color:#20313a}
+#about:before{background:radial-gradient(ellipse at 85% 40%,rgba(120,173,164,.35),transparent 42%),radial-gradient(ellipse at 8% 90%,rgba(183,205,198,.4),transparent 40%),linear-gradient(130deg,#e9efec,#d7e4e0 55%,#e8eeeb)}
+.about-panel{background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(232,242,238,.56));border:1px solid rgba(255,255,255,.9);box-shadow:0 22px 58px rgba(42,70,66,.12)}
+#about .section-title{color:#20343b}#about .eyebrow{color:#5d8b84}#about .about-panel p{color:#566d6b}
+.number{background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.86)}.number b{color:#29413f}.number span{color:#667b78}
+#contacts{background:#e8e2dc;color:#26343b;padding-top:72px;padding-bottom:68px}
+#contacts:before{background:radial-gradient(ellipse at 10% 40%,rgba(210,171,139,.32),transparent 42%),radial-gradient(ellipse at 90% 80%,rgba(154,182,194,.32),transparent 42%),linear-gradient(130deg,#eee9e3,#e0e5e5 56%,#e9e4df)}
+.contact-panel{background:linear-gradient(135deg,rgba(255,255,255,.8),rgba(246,243,238,.6));border:1px solid rgba(255,255,255,.9);box-shadow:0 22px 60px rgba(71,69,61,.12)}
+#contacts .section-title{color:#273941}#contacts .eyebrow{color:#7d8e8e}#contacts .section-desc,#contacts .contact-action p{color:#617178}
+.contact-action{background:rgba(255,255,255,.54);border:1px solid rgba(255,255,255,.88)}.contact-action h3{color:#273b43}
+.contact-details a,.contact-details div{color:#3c535d}
+.contact-icon{background:rgba(255,255,255,.72);color:#567e92}
+.button{background:linear-gradient(135deg,#466d82,#7da9bd);box-shadow:0 10px 25px rgba(59,105,130,.2)}
+footer{background:#0c151e;color:#8ea3b0;border-color:rgba(182,215,231,.12)}
+.modal-panel{background:linear-gradient(135deg,rgba(19,34,46,.98),rgba(29,50,64,.98));border:1px solid rgba(190,223,240,.2)}
+.modal-panel h2{color:#f1f6f8}.modal-panel p{color:#b7c6ce}.modal-close{background:rgba(255,255,255,.12);color:#eff6f8;border-color:rgba(255,255,255,.2)}
+.reveal.animate-ready{opacity:0;transform:translate3d(0,18px,0);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1);will-change:opacity,transform}
+.reveal.animate-ready.visible{opacity:1;transform:translate3d(0,0,0)}
+@media(min-width:1400px){.service-photo{height:255px;min-height:255px;flex-basis:255px}.cards{gap:25px}}
+@media(max-width:900px){.wrap{width:calc(100% - 40px)}.section{padding:58px 0}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.service{min-height:400px}.service-photo{height:210px;min-height:210px;flex-basis:210px}.intro-panel{grid-template-columns:1fr .85fr;gap:25px}.method{gap:35px}}
+@media(max-width:640px){.wrap{width:calc(100% - 32px)}.topbar{padding:18px 0}.top-note{font-size:7px}.hero{height:106svh;min-height:640px}.hero-sticky{height:100svh}.hero-sticky:before{width:112vw;height:68vw}.hero-sticky:after{width:90vw;bottom:20%;filter:blur(36px)}#car3d{inset:18% 4% 30%;width:92%;height:52%}.hero-copy{bottom:12%;padding:0 16px}.hero h1{font-size:clamp(36px,9vw,48px)}.hero-sub{font-size:10px}.car-status{top:13%;font-size:7px}.section{padding:46px 0}.intro{padding-top:32px}.intro-panel{grid-template-columns:1fr;gap:18px;padding:24px 21px;border-radius:22px}.intro h2,.section-title{font-size:clamp(34px,8.8vw,44px)}.section-head{display:block;margin-bottom:22px}.section-head .section-desc{margin-top:10px}.cards{grid-template-columns:1fr;gap:15px}.service{min-height:0;border-radius:19px}.service-photo{height:205px;min-height:205px;flex-basis:205px}.service-content{padding:18px 19px;min-height:0}.service h3{font-size:18px}.method{grid-template-columns:1fr;gap:24px}.method-visual{min-height:210px}.about-panel,.contact-panel{grid-template-columns:1fr;gap:24px;padding:23px 20px;border-radius:22px}.numbers{gap:7px}.number{padding:12px 8px}.number b{font-size:22px}.number span{font-size:8px}.contact-action{padding:21px}.contact-action h3{font-size:20px}.button{min-height:46px;padding:0 16px;font-size:11px}.button.secondary{margin-left:0}.footer-in{flex-direction:column;align-items:flex-start}.modal-panel{padding:26px 21px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal.animate-ready{opacity:1;transform:none;transition:none}.service,.service-photo img{transition:none!important}}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
@@ -109,13 +180,13 @@ footer{padding:25px 0;border-top:1px solid rgba(102,133,151,.2);color:#6b7c87;fo
 <section class="hero" id="home"><div class="hero-sticky" id="heroSticky"><canvas id="car3d" aria-label="Интерактивная трёхмерная модель автомобиля"></canvas><div class="car-status" id="carStatus">ЗАГРУЖАЕМ 3D-МОДЕЛЬ…</div><div class="hero-copy" id="heroCopy"><div class="hero-overline">SL.Detailing68 · Тамбов</div><h1>Рады видеть вас<br><span>в SL.Detailing68</span></h1><div class="hero-sub">Уход, который подчёркивает характер вашего автомобиля</div><div class="rotate-hint">↔ ПОТЯНИТЕ, ЧТОБЫ РАССМОТРЕТЬ АВТОМОБИЛЬ</div></div><div class="scroll-hint"><i></i> ЛИСТАЙТЕ ВНИЗ <i></i></div></div></section>
 <section class="section intro"><div class="wrap"><div class="intro-panel glass reveal"><div><div class="eyebrow">Beyond the ordinary</div><h2>Не просто чистота.<br><span style="color:#a8cde1">Совершенство.</span></h2></div><p>Премиальный уход за автомобилем начинается с внимания к деталям. Защищаем кузов, возвращаем чистоту и создаём комфорт, который ощущается каждый день.</p></div></div></section>
 <section class="section services" id="services"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow">Наши решения</div><h2 class="section-title">Каждой детали —<br>свой уход.</h2></div><p class="section-desc">Продуманные услуги для тех, кто ценит внешний вид, комфорт и состояние своего автомобиля.</p></div><div class="cards">
-<article class="service glass reveal" data-service="0"><div class="service-photo"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1100&q=76" srcset="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=640&q=68 640w, https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1100&q=76 1100w" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" alt="Защита кузова автомобиля плёнкой" loading="eager" decoding="async" fetchpriority="high" onerror="this.parentElement.classList.add('photo-fallback');this.remove()"></div><div class="service-content"><div class="service-top"><span class="service-num">01 / ЗАЩИТА</span><span class="service-icon">◇</span></div><h3>Антигравийная защита кузова</h3><p>Защитная плёнка помогает уберечь лакокрасочное покрытие от сколов и царапин.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="1"><div class="service-photo"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1100&q=76" srcset="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=640&q=68 640w, https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1100&q=76 1100w" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" alt="Глянцевый кузов после защитной обработки" loading="eager" decoding="async" fetchpriority="auto" onerror="this.parentElement.classList.add('photo-fallback');this.remove()"></div><div class="service-content"><div class="service-top"><span class="service-num">02 / ПОКРЫТИЕ</span><span class="service-icon">✧</span></div><h3>Защитное покрытие</h3><p>Защитный состав для блеска кузова и более простого ухода за автомобилем.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="2"><div class="service-photo"><img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=1100&q=76" srcset="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=640&q=68 640w, https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=1100&q=76 1100w" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" alt="Салон современного автомобиля" loading="eager" decoding="async" fetchpriority="auto" onerror="this.parentElement.classList.add('photo-fallback');this.remove()"></div><div class="service-content"><div class="service-top"><span class="service-num">03 / КОМФОРТ</span><span class="service-icon">⌁</span></div><h3>Шумоизоляция автомобиля</h3><p>Снижение дорожного шума и вибраций для более комфортных поездок.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="3"><div class="service-photo"><img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1100&q=76" srcset="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=640&q=68 640w, https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1100&q=76 1100w" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" alt="Уход за подкапотным пространством" loading="lazy" decoding="async" fetchpriority="auto" onerror="this.parentElement.classList.add('photo-fallback');this.remove()"></div><div class="service-content"><div class="service-top"><span class="service-num">04 / МОТОР</span><span class="service-icon">◉</span></div><h3>Химчистка мотора</h3><p>Аккуратная очистка подкапотного пространства с учётом особенностей автомобиля.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="4"><div class="service-photo"><img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1100&q=76" srcset="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=640&q=68 640w, https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1100&q=76 1100w" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" alt="Чистый салон автомобиля" loading="lazy" decoding="async" fetchpriority="auto" onerror="this.parentElement.classList.add('photo-fallback');this.remove()"></div><div class="service-content"><div class="service-top"><span class="service-num">05 / ИНТЕРЬЕР</span><span class="service-icon">⌂</span></div><h3>Химчистка салона</h3><p>Глубокая очистка обивки, ковров и труднодоступных зон интерьера.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="5"><div class="service-photo"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1100&q=76" srcset="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=640&q=68 640w, https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1100&q=76 1100w" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" alt="Полировка и покрытие кузова" loading="lazy" decoding="async" fetchpriority="auto" onerror="this.parentElement.classList.add('photo-fallback');this.remove()"></div><div class="service-content"><div class="service-top"><span class="service-num">06 / БЛЕСК</span><span class="service-icon">✦</span></div><h3>Покрытие кузова</h3><p>Финишный уход за лакокрасочным покрытием для выразительного внешнего вида.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="6"><div class="service-photo"><img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1100&q=76" srcset="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=640&q=68 640w, https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1100&q=76 1100w" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" alt="Детейлинг-мойка автомобиля" loading="lazy" decoding="async" fetchpriority="auto" onerror="this.parentElement.classList.add('photo-fallback');this.remove()"></div><div class="service-content"><div class="service-top"><span class="service-num">07 / УХОД</span><span class="service-icon">≋</span></div><h3>Detailing wash</h3><p>Деликатная мойка кузова, колёс и внешних элементов с вниманием к деталям.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="0"><div class="service-photo"><img src="https://res.cloudinary.com/dbccjczk4/image/upload/v1760103089/PPF2_l4nqi4.jpg" alt="Установка антигравийной плёнки на кузов автомобиля" loading="eager" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('photo-fallback');this.remove()"></div><div class="service-content"><div class="service-top"><span class="service-num">01 / ЗАЩИТА</span><span class="service-icon">◇</span></div><h3>Антигравийная защита кузова</h3><p>Защитная плёнка помогает уберечь лакокрасочное покрытие от сколов и царапин.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="1"><div class="service-photo"><img src="https://waltspolish.com/cdn/shop/collections/ceramic-coating-being-applied.png?v=1757365559" alt="Нанесение защитного керамического покрытия на кузов" loading="eager" decoding="async" fetchpriority="auto" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('photo-fallback');this.remove()"></div><div class="service-content"><div class="service-top"><span class="service-num">02 / ПОКРЫТИЕ</span><span class="service-icon">✧</span></div><h3>Защитное покрытие</h3><p>Защитный состав для блеска кузова и более простого ухода за автомобилем.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="2"><div class="service-photo"><img src="https://cdn.auto-swiat.pl/1/7NDk9lBaHR0cHM6Ly9vY2RuLmV1L3B1bHNjbXMvTURBXy9kM2ViODBjNWUzNWJmZTE5M2QyZWI0MDMzNjRiMjI5Ni5qcGeRkwXNB1jNBYLeAAKhMQQ" alt="Монтаж шумоизоляции двери автомобиля" loading="eager" decoding="async" fetchpriority="auto" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('photo-fallback');this.remove()"></div><div class="service-content"><div class="service-top"><span class="service-num">03 / КОМФОРТ</span><span class="service-icon">⌁</span></div><h3>Шумоизоляция автомобиля</h3><p>Снижение дорожного шума и вибраций для более комфортных поездок.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="3"><div class="service-photo"><img src="https://www.autoreinigung-noack.de/images/A_digital_photograph_captures_a_mechanic_cleaning_.jpg" alt="Профессиональная очистка подкапотного пространства" loading="lazy" decoding="async" fetchpriority="auto" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('photo-fallback');this.remove()"></div><div class="service-content"><div class="service-top"><span class="service-num">04 / МОТОР</span><span class="service-icon">◉</span></div><h3>Химчистка мотора</h3><p>Аккуратная очистка подкапотного пространства с учётом особенностей автомобиля.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="4"><div class="service-photo"><img src="https://vainzgarage.com/service-headlight.png" alt="Глубокая химчистка автомобильного салона" loading="lazy" decoding="async" fetchpriority="auto" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('photo-fallback');this.remove()"></div><div class="service-content"><div class="service-top"><span class="service-num">05 / ИНТЕРЬЕР</span><span class="service-icon">⌂</span></div><h3>Химчистка салона</h3><p>Глубокая очистка обивки, ковров и труднодоступных зон интерьера.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="5"><div class="service-photo"><img src="https://images.squarespace-cdn.com/content/v1/65c79000a6a5b72d6ffa652a/35b9775c-bc1a-42eb-aa4f-56fa2c0b2de6/Pentz%2B101-8%2B%281%29.jpeg" alt="Машинная полировка лакокрасочного покрытия" loading="lazy" decoding="async" fetchpriority="auto" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('photo-fallback');this.remove()"></div><div class="service-content"><div class="service-top"><span class="service-num">06 / БЛЕСК</span><span class="service-icon">✦</span></div><h3>Покрытие кузова</h3><p>Финишный уход за лакокрасочным покрытием для выразительного внешнего вида.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="6"><div class="service-photo"><img src="https://carwash-911.mx/hero.png" alt="Детейлинг-мойка автомобиля с активной пеной" loading="lazy" decoding="async" fetchpriority="auto" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('photo-fallback');this.remove()"></div><div class="service-content"><div class="service-top"><span class="service-num">07 / УХОД</span><span class="service-icon">≋</span></div><h3>Detailing wash</h3><p>Деликатная мойка кузова, колёс и внешних элементов с вниманием к деталям.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
 </div></div></section>
 <section class="section" id="approach"><div class="wrap method"><div class="method-visual glass reveal"><div class="monogram">SL.</div></div><div class="method-copy reveal"><div class="eyebrow">Наш подход</div><h2 class="section-title">Красота —<br>в точности.</h2><p class="section-desc">Подбираем уход под состояние автомобиля и ваши задачи. Никаких случайных решений — только внимательная работа с каждой поверхностью.</p><div class="steps"><div class="step"><b>01</b><div><h3>Осмотр и консультация</h3><p>Обсуждаем состояние автомобиля и желаемый результат.</p></div></div><div class="step"><b>02</b><div><h3>Подбор решения</h3><p>Определяем подходящие услуги и материалы.</p></div></div><div class="step"><b>03</b><div><h3>Работа с деталями</h3><p>Аккуратно выполняем выбранные процедуры.</p></div></div></div></div></div></section>
 <section class="section" id="about"><div class="wrap"><div class="about-panel glass reveal"><div><div class="eyebrow">SL.Detailing68 · Тамбов</div><h2 class="section-title">Ваш автомобиль.<br><span style="color:#a8cde1">В лучшей форме.</span></h2></div><div><p>Студия ухода за автомобилями SL.Detailing68. Защита кузова, глубокая очистка и забота о комфорте — чтобы автомобиль радовал своим видом и состоянием каждый день.</p><div class="numbers"><div class="number"><b>07</b><span>направлений ухода</span></div><div class="number"><b>360°</b><span>внимание к деталям</span></div><div class="number"><b>68</b><span>Тамбов</span></div></div></div></div></div></section>
@@ -132,75 +203,78 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 <script type="module">
 import * as THREE from 'three';
-import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
-const canvas=document.querySelector('#car3d'),hero=document.querySelector('#home'),copy=document.querySelector('#heroCopy');
-let scene,camera,renderer,car,clock,scrollProgress=0,mouseX=0,mouseY=0,controls,drawFallback=null;
-try{
- scene=new THREE.Scene();
- camera=new THREE.PerspectiveCamera(32,1,.1,100);camera.position.set(window.innerWidth<700?7.0:7.3,window.innerWidth<700?2.9:3.0,window.innerWidth<700?8.8:9.1);
- const isMobile=window.matchMedia('(max-width: 700px)').matches;
- renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance',stencil:false,depth:true});
- renderer.setPixelRatio(Math.min(devicePixelRatio||1,isMobile?1.15:1.25));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
- controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.enablePan=false;controls.enableZoom=true;controls.touches.ONE=THREE.TOUCH.ROTATE;controls.touches.TWO=THREE.TOUCH.DOLLY_ROTATE;controls.minDistance=window.innerWidth<700?6.2:5.6;controls.maxDistance=window.innerWidth<700?10:12;controls.rotateSpeed=.72;controls.zoomSpeed=.7;controls.minPolarAngle=.82;controls.maxPolarAngle=1.48;controls.target.set(0,.2,0);controls.autoRotate=true;controls.autoRotateSpeed=.32;
- scene.add(new THREE.HemisphereLight(0xd9edff,0x111923,2.2));
- const key=new THREE.DirectionalLight(0xffffff,4);key.position.set(4,7,6);scene.add(key);
- const rim=new THREE.DirectionalLight(0x80c9ed,4);rim.position.set(-5,3,-5);scene.add(rim);
- const fill=new THREE.PointLight(0x579bc4,20,15);fill.position.set(0,2,3);scene.add(fill);
- const floor=new THREE.Mesh(new THREE.CircleGeometry(5,64),new THREE.MeshBasicMaterial({color:0x162635,transparent:true,opacity:.2}));floor.rotation.x=-Math.PI/2;floor.position.y=-.8;scene.add(floor);
- const carRoot=new THREE.Group();scene.add(carRoot);car=carRoot;
- function fallbackCar(){
-  const paint=new THREE.MeshPhysicalMaterial({color:0x7899ad,metalness:.82,roughness:.19,clearcoat:1,clearcoatRoughness:.07});
-  const glass=new THREE.MeshPhysicalMaterial({color:0x101d29,metalness:.5,roughness:.12,transparent:true,opacity:.92,clearcoat:1});
-  const rubber=new THREE.MeshStandardMaterial({color:0x05070a,roughness:.82}),metal=new THREE.MeshStandardMaterial({color:0xc0d6e5,metalness:.9,roughness:.16});
-  const base=new THREE.Mesh(new THREE.BoxGeometry(4.5,.52,1.85),paint);base.position.y=.12;carRoot.add(base);
-  const hood=new THREE.Mesh(new THREE.BoxGeometry(1.45,.18,1.82),paint);hood.position.set(1.48,.43,0);carRoot.add(hood);
-  const rear=new THREE.Mesh(new THREE.BoxGeometry(1.05,.22,1.82),paint);rear.position.set(-1.65,.42,0);carRoot.add(rear);
-  const roof=new THREE.Mesh(new THREE.BoxGeometry(1.55,.65,1.45),glass);roof.position.set(-.15,.77,0);roof.rotation.z=-.08;carRoot.add(roof);
-  const roofTop=new THREE.Mesh(new THREE.BoxGeometry(1.15,.08,1.43),paint);roofTop.position.set(-.12,1.12,0);carRoot.add(roofTop);
-  for(const z of [-.94,.94])for(const x of [-1.45,1.45]){
-   const tire=new THREE.Mesh(new THREE.CylinderGeometry(.47,.47,.28,48),rubber);tire.rotation.x=Math.PI/2;tire.position.set(x,-.25,z);carRoot.add(tire);
-   const rim=new THREE.Mesh(new THREE.CylinderGeometry(.29,.29,.3,40),metal);rim.rotation.x=Math.PI/2;rim.position.copy(tire.position);carRoot.add(rim);
-   const hub=new THREE.Mesh(new THREE.CylinderGeometry(.1,.1,.31,24),rubber);hub.rotation.x=Math.PI/2;hub.position.copy(tire.position);carRoot.add(hub);
-   for(let s=0;s<10;s++){const spoke=new THREE.Mesh(new THREE.BoxGeometry(.035,.48,.035),metal);spoke.position.set(x,-.25,z);spoke.rotation.z=s*Math.PI/5;carRoot.add(spoke)}
-  }
-  const lampMat=new THREE.MeshBasicMaterial({color:0xd9f1ff});
-  for(const z of [-.65,.65]){const lamp=new THREE.Mesh(new THREE.BoxGeometry(.38,.06,.07),lampMat);lamp.position.set(2.26,.32,z);carRoot.add(lamp)}
-  carRoot.scale.setScalar(.94);
+const canvas=document.querySelector('#car3d'),hero=document.querySelector('#home'),copy=document.querySelector('#heroCopy'),status=document.querySelector('#carStatus');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let scene,camera,renderer,controls,carRoot,raf=0,last=0,progress=0,inView=false,disposed=false;
+function buildCar(){
+ const root=new THREE.Group();
+ const paint=new THREE.MeshPhysicalMaterial({color:0x8baabd,metalness:.82,roughness:.2,clearcoat:1,clearcoatRoughness:.08});
+ const dark=new THREE.MeshPhysicalMaterial({color:0x101c27,metalness:.35,roughness:.16,clearcoat:1,transparent:true,opacity:.96});
+ const rubber=new THREE.MeshStandardMaterial({color:0x080c10,roughness:.82});
+ const alloy=new THREE.MeshStandardMaterial({color:0xb9cbd4,metalness:.92,roughness:.22});
+ const lamp=new THREE.MeshStandardMaterial({color:0xdff6ff,emissive:0x8bc9e8,emissiveIntensity:1.7,metalness:.2,roughness:.18});
+ const red=new THREE.MeshStandardMaterial({color:0x9e1825,emissive:0x6c0710,emissiveIntensity:.8});
+ const bodyShape=new THREE.Shape();
+ bodyShape.moveTo(-2.35,.28);bodyShape.lineTo(2.22,.28);bodyShape.lineTo(2.3,.48);bodyShape.quadraticCurveTo(2.12,.72,1.52,.79);bodyShape.lineTo(.95,1.27);bodyShape.quadraticCurveTo(.72,1.42,.35,1.43);bodyShape.lineTo(-.75,1.4);bodyShape.quadraticCurveTo(-1.05,1.36,-1.28,1.08);bodyShape.lineTo(-1.7,.78);bodyShape.quadraticCurveTo(-2.24,.69,-2.35,.52);bodyShape.closePath();
+ const bodyGeo=new THREE.ExtrudeGeometry(bodyShape,{depth:1.82,bevelEnabled:true,bevelSegments:4,steps:1,bevelSize:.065,bevelThickness:.055,curveSegments:12});
+ bodyGeo.translate(0,0,-.91);root.add(new THREE.Mesh(bodyGeo,paint));
+ const hood=new THREE.Mesh(new THREE.BoxGeometry(1.12,.045,1.5),new THREE.MeshPhysicalMaterial({color:0xa7bdca,metalness:.85,roughness:.24,clearcoat:1}));hood.position.set(1.45,.72,0);root.add(hood);
+ const roof=new THREE.Mesh(new THREE.BoxGeometry(1.38,.07,1.43),paint);roof.position.set(-.12,1.4,0);root.add(roof);
+ // panoramic glass surfaces
+ for(const side of [-1,1]){
+  const glassShape=new THREE.Shape();glassShape.moveTo(-1.18,1.08);glassShape.lineTo(-.7,1.34);glassShape.lineTo(.28,1.35);glassShape.lineTo(.78,1.08);glassShape.closePath();
+  const glassGeo=new THREE.ShapeGeometry(glassShape,12);const glassMesh=new THREE.Mesh(glassGeo,dark);glassMesh.position.z=side*.918;glassMesh.material.side=THREE.DoubleSide;root.add(glassMesh);
+  const mirror=new THREE.Mesh(new THREE.SphereGeometry(.13,18,12),paint);mirror.scale.set(1,.65,.72);mirror.position.set(.72,.87,side*1.02);root.add(mirror);
  }
- // Мгновенно показываем резервную 3D-машину, пока загружается детальная GLB-модель.
- fallbackCar();
- const loader=new GLTFLoader();
- loader.load('https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/CarConcept/glTF-Binary/CarConcept.glb',gltf=>{
-  const model=gltf.scene;const box=new THREE.Box3().setFromObject(model),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());
-  model.position.sub(center);const max=Math.max(size.x,size.y,size.z);const modelScale=(window.innerWidth<700?4.85:5.15)/max;model.scale.setScalar(modelScale);model.position.y=-(box.min.y-center.y)*modelScale;model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material){o.material.metalness=Math.max(o.material.metalness||0,.35);o.material.roughness=Math.min(o.material.roughness??.5,.34)}}});
-  carRoot.clear();carRoot.add(model);carRoot.rotation.y=-.42;document.getElementById('carStatus').textContent='3D-МОДЕЛЬ ГОТОВА · ВРАЩАЙТЕ ПАЛЬЦЕМ';
- },event=>{if(event.total){const pct=Math.round(event.loaded/event.total*100);document.getElementById('carStatus').textContent='ЗАГРУЖАЕМ 3D-МОДЕЛЬ · '+pct+'%';}},error=>{console.error('3D model failed to load',error);document.getElementById('carStatus').textContent='3D-АВТОМОБИЛЬ · МОЖНО ВРАЩАТЬ';});
- carRoot.rotation.y=-.42;carRoot.position.y=-.1;
- clock=new THREE.Clock();
- function resize(){const w=canvas.clientWidth||innerWidth,h=canvas.clientHeight||innerHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
- const ro=new ResizeObserver(resize);ro.observe(canvas);resize();
- canvas.style.cursor='grab';canvas.addEventListener('pointerdown',()=>canvas.style.cursor='grabbing');canvas.addEventListener('pointerup',()=>canvas.style.cursor='grab');
- let scrollTick=false;function onScroll(){if(scrollTick)return;scrollTick=true;requestAnimationFrame(()=>{const r=hero.getBoundingClientRect(),travel=hero.offsetHeight-innerHeight;scrollProgress=Math.max(0,Math.min(1,-r.top/Math.max(1,travel)));copy.style.opacity=String(Math.max(0,1-scrollProgress*2.6));const maxScroll=Math.max(1,document.documentElement.scrollHeight-innerHeight);const pageProgress=Math.max(0,Math.min(1,scrollY/maxScroll));document.documentElement.style.setProperty('--page-progress',pageProgress.toFixed(3));document.documentElement.style.setProperty('--scroll-progress',pageProgress.toFixed(3));scrollTick=false;});}
- addEventListener('scroll',onScroll,{passive:true});onScroll();
- let raf=0,lastFrame=0;function frame(now=0){raf=requestAnimationFrame(frame);if(document.hidden)return;if(now-lastFrame<30)return;lastFrame=now;const t=clock.getElapsedTime();const p=scrollProgress;carRoot.position.y=-.1+Math.sin(t*.9)*.025-p*.32;const s=(window.innerWidth<700? .84:.92)-p*.07;carRoot.scale.setScalar(s);controls.target.y=.2-p*.08;controls.update();renderer.render(scene,camera)}document.addEventListener('visibilitychange',()=>{if(!document.hidden){lastFrame=0;}});
- frame();
-}catch(e){console.error('3D initialization failed',e);canvas.style.background='radial-gradient(ellipse,rgba(110,175,210,.28),transparent 65%)';try{if(drawFallback)drawFallback();}catch(_){ }const status=document.getElementById('carStatus');if(status)status.textContent='3D-ПРЕДПРОСМОТР';}
-
-const serviceInfo=[
- {title:'Антигравийная защита кузова',price:'Уточнить стоимость',text:'Оклейка уязвимых элементов защитной полиуретановой плёнкой. Помогает защитить лакокрасочное покрытие от сколов, мелких царапин и дорожного песка.'},
- {title:'Защитное покрытие',price:'Уточнить стоимость',text:'Нанесение защитного состава на кузов. Покрытие помогает сохранить блеск, облегчает уход и защищает поверхность от внешних воздействий.'},
- {title:'Шумоизоляция автомобиля',price:'Уточнить стоимость',text:'Обработка выбранных зон шумо- и виброизоляционными материалами для снижения дорожного шума и повышения комфорта в салоне.'},
- {title:'Химчистка мотора',price:'Стоимость уточняется',text:'Деликатная очистка подкапотного пространства с учётом материалов и чувствительных элементов. Итоговая стоимость зависит от состояния и объёма работ.'},
- {title:'Химчистка салона',price:'Стоимость после осмотра',text:'Глубокая очистка обивки, ковровых покрытий и труднодоступных зон салона. Объём работ и цена зависят от размера автомобиля и состояния интерьера.'},
- {title:'Покрытие кузова',price:'Стоимость уточняется',text:'Уход за лакокрасочным покрытием и нанесение подходящего защитного состава. Подберём вариант после осмотра автомобиля.'},
- {title:'Detailing wash',price:'Стоимость уточняется',text:'Тщательная деликатная мойка кузова, колёс и внешних деталей с проработкой труднодоступных зон.'}
-];
-const modal=document.getElementById('serviceModal');
-document.querySelectorAll('.service').forEach(card=>card.addEventListener('click',e=>{if(e.target.closest('a'))return;const item=serviceInfo[Number(card.dataset.service)];if(!item)return;document.getElementById('modalTitle').textContent=item.title;document.getElementById('modalPrice').textContent=item.price;document.getElementById('modalText').textContent=item.text;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}));
-function closeServiceModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}
-modal.querySelectorAll('[data-close]').forEach(el=>el.addEventListener('click',closeServiceModal));document.addEventListener('keydown',e=>{if(e.key==='Escape')closeServiceModal()});
-
-
+ // front and rear details
+ const grille=new THREE.Mesh(new THREE.BoxGeometry(.055,.22,.82),new THREE.MeshStandardMaterial({color:0x111820,metalness:.45,roughness:.4}));grille.position.set(2.34,.43,0);root.add(grille);
+ for(const side of [-1,1]){
+  const head=new THREE.Mesh(new THREE.BoxGeometry(.06,.12,.38),lamp);head.position.set(2.34,.58,side*.57);root.add(head);
+  const tail=new THREE.Mesh(new THREE.BoxGeometry(.055,.1,.5),red);tail.position.set(-2.37,.52,side*.55);root.add(tail);
+  const wheel=new THREE.Group();wheel.position.set(side===1?1.42:-1.48,.34,side*.91);
+  const tire=new THREE.Mesh(new THREE.TorusGeometry(.43,.145,18,48),rubber);wheel.add(tire);
+  const rim=new THREE.Mesh(new THREE.CylinderGeometry(.29,.29,.12,40),alloy);rim.rotation.x=Math.PI/2;wheel.add(rim);
+  const hub=new THREE.Mesh(new THREE.CylinderGeometry(.105,.105,.14,28),dark);hub.rotation.x=Math.PI/2;wheel.add(hub);
+  for(let k=0;k<10;k++){const spoke=new THREE.Mesh(new THREE.BoxGeometry(.035,.48,.045),alloy);spoke.position.z=.075;spoke.rotation.z=k*Math.PI/5;wheel.add(spoke)}
+  root.add(wheel);
+ }
+ const under=new THREE.Mesh(new THREE.BoxGeometry(3.8,.12,1.55),new THREE.MeshStandardMaterial({color:0x111820,roughness:.8}));under.position.y=.12;root.add(under);
+ root.scale.setScalar(.94);return root;
+}
+function fallback(){
+ const poster=document.createElement('div');poster.className='car-poster';poster.textContent='SL · DETAILING68';canvas.replaceWith(poster);
+}
+function start(){
+ if(disposed||renderer||!canvas.isConnected)return;
+ try{
+  scene=new THREE.Scene();
+  camera=new THREE.PerspectiveCamera(32,1,.1,100);camera.position.set(6.4,2.8,7.3);
+  const mobile=matchMedia('(max-width:700px)').matches;
+  renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:!mobile,powerPreference:'high-performance',stencil:false,depth:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio||1,mobile?1.25:1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.18;
+  scene.add(new THREE.HemisphereLight(0xdceeff,0x15202a,2.1));
+  const key=new THREE.DirectionalLight(0xfff4e8,3.3);key.position.set(4,7,6);scene.add(key);
+  const fill=new THREE.DirectionalLight(0x8cc9e8,2.3);fill.position.set(-5,3,4);scene.add(fill);
+  const rim=new THREE.DirectionalLight(0x6caed0,3.4);rim.position.set(-4,4,-6);scene.add(rim);
+  carRoot=buildCar();scene.add(carRoot);
+  const shadow=new THREE.Mesh(new THREE.CircleGeometry(3.1,48),new THREE.MeshBasicMaterial({color:0x7eb2ca,transparent:true,opacity:.16,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=-.12;scene.add(shadow);
+  controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.065;controls.enablePan=false;controls.enableZoom=true;controls.autoRotate=!reduced;controls.autoRotateSpeed=.38;controls.minDistance=5.2;controls.maxDistance=10;controls.minPolarAngle=.85;controls.maxPolarAngle=1.48;controls.target.set(0,.65,0);controls.update();
+  const resize=()=>{if(!renderer)return;const w=Math.max(1,canvas.clientWidth),h=Math.max(1,canvas.clientHeight);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()};
+  const ro=new ResizeObserver(resize);ro.observe(canvas);resize();
+  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(raf);status.textContent='3D-ПРЕДПРОСМОТР';fallback();},{once:true});
+  status.textContent='3D-АВТОМОБИЛЬ · ВРАЩАЙТЕ МЫШЬЮ ИЛИ ПАЛЬЦЕМ';
+  const tick=now=>{raf=0;if(disposed||!renderer||!inView||document.hidden)return;const limit=mobile?33:22;if(now-last<limit){raf=requestAnimationFrame(tick);return}last=now;const p=progress;if(!reduced){carRoot.position.y=Math.sin(now*.00065)*.025-p*.22;carRoot.rotation.z=Math.sin(now*.0003)*.006;carRoot.scale.setScalar((mobile?.88:.98)-p*.09)}camera.position.y=2.8-p*.32;controls.target.y=.65-p*.12;controls.update();renderer.render(scene,camera);raf=requestAnimationFrame(tick)};
+  const run=()=>{if(!raf&&!disposed&&inView&&!document.hidden)raf=requestAnimationFrame(tick)};
+  const stop=()=>{if(raf){cancelAnimationFrame(raf);raf=0}};
+  document.addEventListener('visibilitychange',()=>document.hidden?stop():run());
+  const io=new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;if(inView)run();else stop()},{threshold:.02});io.observe(hero);
+  addEventListener('pagehide',()=>{disposed=true;stop();io.disconnect();ro.disconnect();controls.dispose();renderer.dispose()},{once:true});
+  if(inView)run();
+ }catch(err){console.error('3D fallback',err);status.textContent='SL · DETAILING68';try{fallback()}catch(_){}}
+}
+const heroObserver=new IntersectionObserver(entries=>{if(entries[0].isIntersecting){heroObserver.disconnect();start()}},{rootMargin:'120px'});heroObserver.observe(hero);
+let scrollBusy=false;function onScroll(){if(scrollBusy)return;scrollBusy=true;requestAnimationFrame(()=>{const r=hero.getBoundingClientRect(),range=Math.max(1,hero.offsetHeight-innerHeight);progress=Math.max(0,Math.min(1,-r.top/range));copy.style.opacity=String(Math.max(0,1-progress*2.4));scrollBusy=false})}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
 </script>
 </body></html>
