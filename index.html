@@ -246,11 +246,13 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 </script>
 <script type="module">
-let THREE, OrbitControls, GLTFLoader;
+let THREE, OrbitControls, GLTFLoader, KTX2Loader, MeshoptDecoder;
 try {
   THREE = await import('three');
   ({ OrbitControls } = await import('three/addons/controls/OrbitControls.js'));
   ({ GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js'));
+  ({ KTX2Loader } = await import('three/addons/loaders/KTX2Loader.js'));
+  ({ MeshoptDecoder } = await import('three/addons/libs/meshopt_decoder.module.js'));
 } catch (primaryError) {
   console.warn('Primary Three.js CDN failed; trying backup CDN', primaryError);
   try {
@@ -323,6 +325,10 @@ function start(){
   carRoot=new THREE.Group();scene.add(carRoot);
   // Load a real textured 3D vehicle model; keep the poster visible until it renders.
   const loader=new GLTFLoader();
+  const ktx2=new KTX2Loader().setTranscoderPath('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/basis/').detectSupport(renderer);
+  loader.setKTX2Loader(ktx2);
+  loader.setMeshoptDecoder(MeshoptDecoder);
+  status.textContent='ЗАГРУЖАЕМ НАСТОЯЩУЮ 3D-МОДЕЛЬ';
   loader.load('https://tevy.dev/models/family-sedan/v1/lod1.glb',gltf=>{
     if(disposed||!scene)return;
     const model=gltf.scene;
@@ -346,13 +352,13 @@ function start(){
     });
     carRoot.add(model);
     status.textContent='3D-АВТОМОБИЛЬ · ВРАЩАЙТЕ МЫШЬЮ ИЛИ ПАЛЬЦЕМ';
-  },undefined,err=>{console.error('Vehicle GLB failed to load',err);status.textContent='НЕ УДАЛОСЬ ЗАГРУЗИТЬ 3D-МОДЕЛЬ';});
+  },undefined,err=>{console.error('Vehicle GLB failed to load',err);status.textContent='ОШИБКА ЗАГРУЗКИ 3D-МОДЕЛИ';});
   const shadow=new THREE.Mesh(new THREE.CircleGeometry(3.1,48),new THREE.MeshBasicMaterial({color:0x7eb2ca,transparent:true,opacity:.16,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=-.12;scene.add(shadow);
   controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.065;controls.enablePan=false;controls.enableZoom=true;controls.autoRotate=!reduced;controls.autoRotateSpeed=.38;controls.minDistance=4.4;controls.maxDistance=8.5;controls.minPolarAngle=.85;controls.maxPolarAngle=1.48;controls.target.set(0,.65,0);controls.update();
   const resize=()=>{if(!renderer)return;const w=Math.max(1,canvas.clientWidth),h=Math.max(1,canvas.clientHeight);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()};
   const ro=new ResizeObserver(resize);ro.observe(canvas);resize();
   canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(raf);status.textContent='3D-ПРЕДПРОСМОТР';fallback();},{once:true});
-  status.textContent='3D-АВТОМОБИЛЬ · ВРАЩАЙТЕ МЫШЬЮ ИЛИ ПАЛЬЦЕМ';
+  status.textContent='ЗАГРУЖАЕМ НАСТОЯЩУЮ 3D-МОДЕЛЬ';
   const tick=now=>{raf=0;if(disposed||!renderer||!inView||document.hidden)return;const limit=mobile?33:22;if(now-last<limit){raf=requestAnimationFrame(tick);return}last=now;const p=progress;if(!reduced){carRoot.position.y=Math.sin(now*.00065)*.025-p*.22;carRoot.rotation.z=Math.sin(now*.0003)*.006;carRoot.scale.setScalar((mobile ? 0.88 : 0.98)-p*.09)}camera.position.y=2.8-p*.32;controls.target.y=.65-p*.12;controls.update();renderer.render(scene,camera);const posterEl=document.querySelector('#carPoster');if(posterEl&&carRoot.children.length)posterEl.classList.add('poster-hidden');raf=requestAnimationFrame(tick)};
   const run=()=>{if(!raf&&!disposed&&inView&&!document.hidden)raf=requestAnimationFrame(tick)};
   const stop=()=>{if(raf){cancelAnimationFrame(raf);raf=0}};
