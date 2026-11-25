@@ -364,16 +364,9 @@ function start(){
       status.textContent='ИНТЕРАКТИВНАЯ 3D-МОДЕЛЬ · ВРАЩАЙТЕ МЫШЬЮ';
     }
   });
-  // If the external model stalls on a desktop network, show the built-in 3D car instead of a blank hero.
-  setTimeout(()=>{
-    if(!disposed&&carRoot&&!carRoot.children.length){
-      console.warn('3D model load timed out; using built-in 3D vehicle');
-      carRoot.add(buildCar());
-      const poster=document.querySelector('#carPoster');
-      if(poster)poster.style.display='none';
-      status.textContent='ИНТЕРАКТИВНАЯ 3D-МОДЕЛЬ · ВРАЩАЙТЕ МЫШЬЮ';
-    }
-  },12000);
+  // Do not replace the real vehicle just because desktop decoding is slower.
+  // The detailed GLB remains the preferred model; the 3D fallback is used only on a real load error.
+  const modelLoadStartedAt=performance.now();
   const shadow=new THREE.Mesh(new THREE.CircleGeometry(3.1,48),new THREE.MeshBasicMaterial({color:0x7eb2ca,transparent:true,opacity:.16,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=-.12;scene.add(shadow);
   controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.045;controls.enablePan=false;controls.enableZoom=true;controls.autoRotate=!reduced;controls.autoRotateSpeed=.28;controls.minDistance=4.4;controls.maxDistance=8.5;controls.minPolarAngle=.85;controls.maxPolarAngle=1.48;controls.target.set(0,.65,0);controls.update();
   const resize=()=>{if(!renderer)return;const w=Math.max(1,canvas.clientWidth),h=Math.max(1,canvas.clientHeight);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()};
