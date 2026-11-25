@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#080b10">
 <meta name="description" content="SL.Detailing68 — премиальный детейлинг в Тамбове. Защита кузова, уход и комфорт вашего автомобиля.">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <title>SL.Detailing68 — Искусство безупречного ухода</title>
 <style>
 :root{--ink:#23323d;--muted:#61727e;--blue:#6f94a9;--line:rgba(82,112,131,.18);--max:1180px}
@@ -215,7 +216,7 @@ img.image-unavailable{opacity:0;visibility:hidden}
 @media(max-width:700px){#carPoster{inset:20% 2% 26%}#car3d{inset:18% 4% 25%;width:92%;height:57%}}
 
 </style>
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+
 </head>
 <body><div class="grain"></div>
 <div class="topbar"><div class="wrap topbar-in"><a class="brand" href="#">SL<b>.</b>DETAILING68</a><span class="top-note">Premium automotive care · Tambov</span></div></div>
@@ -247,13 +248,13 @@ document.addEventListener('DOMContentLoaded',function(){
 <script type="module">
 let THREE, OrbitControls;
 try {
-  THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
-  ({ OrbitControls } = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js'));
+  THREE = await import('three');
+  ({ OrbitControls } = await import('three/addons/controls/OrbitControls.js'));
 } catch (primaryError) {
   console.warn('Primary Three.js CDN failed; trying backup CDN', primaryError);
   try {
-    THREE = await import('https://unpkg.com/three@0.160.0/build/three.module.js');
-    ({ OrbitControls } = await import('https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js'));
+    THREE = await import('https://esm.sh/three@0.160.0?bundle');
+    ({ OrbitControls } = await import('https://esm.sh/three@0.160.0/examples/jsm/controls/OrbitControls.js?bundle&external=three'));
   } catch (backupError) {
     console.error('Three.js could not be loaded from either CDN', backupError);
     const s = document.querySelector('#carStatus');
@@ -298,7 +299,7 @@ function buildCar(){
   root.add(wheel);
  }
  const under=new THREE.Mesh(new THREE.BoxGeometry(3.8,.12,1.55),new THREE.MeshStandardMaterial({color:0x111820,roughness:.8}));under.position.y=.12;root.add(under);
- root.scale.setScalar(.94);return root;
+ root.scale.setScalar(1.16);return root;
 }
 function fallback(){
  const poster=document.createElement('div');poster.className='car-poster';
@@ -309,7 +310,7 @@ function start(){
  if(disposed||renderer||!canvas.isConnected)return;
  try{
   scene=new THREE.Scene();
-  camera=new THREE.PerspectiveCamera(32,1,.1,100);camera.position.set(6.4,2.8,7.3);
+  camera=new THREE.PerspectiveCamera(30,1,.1,100);camera.position.set(5.8,2.35,6.5);
   const mobile=matchMedia('(max-width:700px)').matches;
   renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:!mobile,powerPreference:'high-performance',stencil:false,depth:true});
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,mobile?1.25:1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.18;
@@ -319,7 +320,7 @@ function start(){
   const rim=new THREE.DirectionalLight(0x6caed0,3.4);rim.position.set(-4,4,-6);scene.add(rim);
   carRoot=buildCar();scene.add(carRoot);
   const shadow=new THREE.Mesh(new THREE.CircleGeometry(3.1,48),new THREE.MeshBasicMaterial({color:0x7eb2ca,transparent:true,opacity:.16,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=-.12;scene.add(shadow);
-  controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.065;controls.enablePan=false;controls.enableZoom=true;controls.autoRotate=!reduced;controls.autoRotateSpeed=.38;controls.minDistance=5.2;controls.maxDistance=10;controls.minPolarAngle=.85;controls.maxPolarAngle=1.48;controls.target.set(0,.65,0);controls.update();
+  controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.065;controls.enablePan=false;controls.enableZoom=true;controls.autoRotate=!reduced;controls.autoRotateSpeed=.38;controls.minDistance=4.4;controls.maxDistance=8.5;controls.minPolarAngle=.85;controls.maxPolarAngle=1.48;controls.target.set(0,.65,0);controls.update();
   const resize=()=>{if(!renderer)return;const w=Math.max(1,canvas.clientWidth),h=Math.max(1,canvas.clientHeight);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()};
   const ro=new ResizeObserver(resize);ro.observe(canvas);resize();
   canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(raf);status.textContent='3D-ПРЕДПРОСМОТР';fallback();},{once:true});
@@ -331,7 +332,7 @@ function start(){
   const io=new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;if(inView)run();else stop()},{threshold:.02});io.observe(hero);
   addEventListener('pagehide',()=>{disposed=true;stop();io.disconnect();ro.disconnect();controls.dispose();renderer.dispose()},{once:true});
   if(inView)run();
- }catch(err){console.error('3D fallback',err);status.textContent='SL · DETAILING68';try{fallback()}catch(_){}}
+ }catch(err){console.error('3D renderer initialization failed:',err);status.textContent='3D НЕ ЗАПУСТИЛОСЬ · ПРОВЕРЬТЕ WEBGL';try{fallback()}catch(_){}}
 }
 // Start the renderer immediately; the lightweight SVG poster stays visible while Three.js loads.
 requestAnimationFrame(()=>setTimeout(start,180));
@@ -362,7 +363,11 @@ addEventListener('scroll',onScroll,{passive:true});onScroll();
 .service-photo.photo-fallback:before{content:"SL · DETAILING68";position:absolute;inset:0;display:grid;place-items:center;color:#d8eaf3;font-size:12px;letter-spacing:.2em;background:linear-gradient(135deg,#20394a,#7398ad)}
 #carPoster{z-index:3!important;opacity:1;visibility:visible;pointer-events:none}
 #carPoster.poster-hidden{opacity:0;visibility:hidden}
-#car3d{z-index:2!important;min-height:280px}
+#car3d{z-index:2!important;min-height:280px;pointer-events:auto}
+#carPoster{inset:12% 7% 22%;z-index:3}
+#carPoster .service-art{max-width:1080px}
+@media(min-width:700px){#car3d{inset:8% 4% 18%;width:92%;height:74%}#carPoster{inset:10% 4% 19%}}
+@media(max-width:700px){#car3d{inset:16% 2% 27%;width:96%;height:57%}#carPoster{inset:17% 1% 25%}}
 .car-poster{z-index:4}
 @media(max-width:640px){.service-photo{height:205px!important;min-height:205px!important;flex-basis:205px!important}}
 </style>
