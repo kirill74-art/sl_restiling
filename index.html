@@ -144,6 +144,52 @@ footer{font-size:12px;color:#61737f;border-color:rgba(78,105,121,.2)}
  .modal-panel h2{font-size:30px}.modal-panel p{font-size:14px}.modal-price{font-size:21px}
  .step h3{font-size:15px}.step p{font-size:13px}.contact-details a,.contact-details div{font-size:13px}.contact-action h3{font-size:22px}.contact-action p{font-size:13px}
 }
+
+/* Performance + compact premium layout */
+:root{--page-tone:#e8edf0;--scroll-tone:0}
+html,body{background:var(--page-tone)}
+body:before{background:
+ radial-gradient(ellipse at 12% 4%,rgba(255,255,255,.98),transparent 39%),
+ radial-gradient(ellipse at 88% 26%,rgba(173,196,209,.34),transparent 42%),
+ linear-gradient(145deg,#f0f3f5,#e4eaee 55%,#e9eef1);
+ transition:filter .35s ease}
+.hero-sticky{background:radial-gradient(ellipse at 50% 45%,#fbfcfd 0%,#e8eef2 52%,#dce5eb 100%)}
+.section{padding-top:64px;padding-bottom:64px}
+.intro{padding-top:48px}
+.services{padding-top:54px}
+.section-head{margin-bottom:28px}
+.cards{gap:17px}
+.service-photo{height:190px;min-height:190px;flex-basis:190px}
+.service-content{min-height:205px;padding:19px 21px}
+.service h3{font-size:19px;min-height:0;margin:13px 0 7px}
+.service p{font-size:13px;line-height:1.62}
+#car3d{inset:4% -3% 8%;width:106%;height:92%;transform:scale(1.08);transform-origin:center}
+.hero{height:142svh}
+.hero-sticky{overflow:hidden}
+.hero-copy{bottom:7%}
+.hero h1{font-size:clamp(43px,7.5vw,88px)}
+.car-status{top:12%;font-size:10px}
+.service-photo img{content-visibility:auto}
+.photo-fallback{display:grid;place-items:center;background:linear-gradient(135deg,#dce6eb,#b8cbd6)}
+.photo-fallback:before{content:"SL DETAILING68";font-size:12px;letter-spacing:.18em;color:#58778a}
+@media(max-width:850px){.section{padding:54px 0}.intro{padding-top:38px}.cards{gap:14px}.service-photo{height:175px;min-height:175px;flex-basis:175px}.service-content{min-height:200px}}
+@media(max-width:640px){
+ .hero{height:135svh}
+ #car3d{inset:10% -8% 22%;width:116%;height:70%;transform:scale(1.1)}
+ .hero-copy{bottom:11%}
+ .section{padding:46px 0}
+ .intro{padding-top:34px}
+ .services{padding-top:42px}
+ .section-head{margin-bottom:21px}
+ .cards{gap:14px}
+ .service-photo{height:190px;min-height:190px;flex-basis:190px}
+ .service-content{min-height:0;padding:18px 19px}
+ .service h3{font-size:19px}
+ .service p{font-size:13px}
+ .method-visual{min-height:210px}
+}
+@media(prefers-reduced-motion:reduce){.section,.service{transition:none!important}}
+
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
@@ -153,13 +199,13 @@ footer{font-size:12px;color:#61737f;border-color:rgba(78,105,121,.2)}
 <section class="hero" id="home"><div class="hero-sticky" id="heroSticky"><canvas id="car3d" aria-label="Интерактивная трёхмерная модель автомобиля"></canvas><div class="car-status" id="carStatus">ЗАГРУЖАЕМ 3D-МОДЕЛЬ…</div><div class="hero-copy" id="heroCopy"><div class="hero-overline">SL.Detailing68 · Тамбов</div><h1>Рады видеть вас<br><span>в SL.Detailing68</span></h1><div class="hero-sub">Уход, который подчёркивает характер вашего автомобиля</div><div class="rotate-hint">↔ ПОТЯНИТЕ, ЧТОБЫ РАССМОТРЕТЬ АВТОМОБИЛЬ</div></div><div class="scroll-hint"><i></i> ЛИСТАЙТЕ ВНИЗ <i></i></div></div></section>
 <section class="section intro"><div class="wrap"><div class="intro-panel glass reveal"><div><div class="eyebrow">Beyond the ordinary</div><h2>Не просто чистота.<br><span style="color:#a8cde1">Совершенство.</span></h2></div><p>Премиальный уход за автомобилем начинается с внимания к деталям. Защищаем кузов, возвращаем чистоту и создаём комфорт, который ощущается каждый день.</p></div></div></section>
 <section class="section services" id="services"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow">Наши решения</div><h2 class="section-title">Каждой детали —<br>свой уход.</h2></div><p class="section-desc">Продуманные услуги для тех, кто ценит внешний вид, комфорт и состояние своего автомобиля.</p></div><div class="cards">
-<article class="service glass reveal" data-service="0"><div class="service-photo"><img src="https://c3autocare.in/cdn/shop/files/car-detailing-siliguri-c3-auto-care.png?v=1773902381&width=1200" alt="Защита кузова автомобиля плёнкой" loading="eager" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85'"></div><div class="service-content"><div class="service-top"><span class="service-num">01 / ЗАЩИТА</span><span class="service-icon">◇</span></div><h3>Антигравийная защита кузова</h3><p>Защитная плёнка помогает уберечь лакокрасочное покрытие от сколов и царапин.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="1"><div class="service-photo"><img src="https://www.detailingdevils.com/uploads/blogs/premium-car-coating-india.webp" alt="Глянцевый кузов после защитной обработки" loading="eager" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85'"></div><div class="service-content"><div class="service-top"><span class="service-num">02 / ПОКРЫТИЕ</span><span class="service-icon">✧</span></div><h3>Защитное покрытие</h3><p>Защитный состав для блеска кузова и более простого ухода за автомобилем.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="2"><div class="service-photo"><img src="https://www.crestive.qa/wp-content/uploads/2024/09/car_detailing_service.webp" alt="Салон современного автомобиля" loading="eager" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85'"></div><div class="service-content"><div class="service-top"><span class="service-num">03 / КОМФОРТ</span><span class="service-icon">⌁</span></div><h3>Шумоизоляция автомобиля</h3><p>Снижение дорожного шума и вибраций для более комфортных поездок.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="3"><div class="service-photo"><img src="https://100service.in/public/uploads/1739271145-car-detailing-package-at-home-%281%29.jpg" alt="Уход за подкапотным пространством" loading="eager" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85'"></div><div class="service-content"><div class="service-top"><span class="service-num">04 / МОТОР</span><span class="service-icon">◉</span></div><h3>Химчистка мотора</h3><p>Аккуратная очистка подкапотного пространства с учётом особенностей автомобиля.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="4"><div class="service-photo"><img src="https://thedetailinggang.com/images/packages/titanum-pacakge-car__2.webp" alt="Чистый салон автомобиля" loading="eager" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85'"></div><div class="service-content"><div class="service-top"><span class="service-num">05 / ИНТЕРЬЕР</span><span class="service-icon">⌂</span></div><h3>Химчистка салона</h3><p>Глубокая очистка обивки, ковров и труднодоступных зон интерьера.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="5"><div class="service-photo"><img src="https://images.bizquest.com/shared/listings/249/2492038/9d6f684b-f34e-419b-9b47-0df2a342667d-W768.webp" alt="Полировка и покрытие кузова" loading="eager" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85'"></div><div class="service-content"><div class="service-top"><span class="service-num">06 / БЛЕСК</span><span class="service-icon">✦</span></div><h3>Покрытие кузова</h3><p>Финишный уход за лакокрасочным покрытием для выразительного внешнего вида.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
-<article class="service glass reveal" data-service="6"><div class="service-photo"><img src="https://primary.jwwb.nl/public/z/t/e/temp-fmmhfbhirmnimpvpcldo/chatgpt-image-feb-17-2026-02_23_15-am-standard.png" alt="Детейлинг-мойка автомобиля" loading="eager" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85'"></div><div class="service-content"><div class="service-top"><span class="service-num">07 / УХОД</span><span class="service-icon">≋</span></div><h3>Detailing wash</h3><p>Деликатная мойка кузова, колёс и внешних элементов с вниманием к деталям.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="0"><div class="service-photo"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=960&q=72" alt="Защита кузова автомобиля плёнкой" loading="eager" decoding="async" fetchpriority="high" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">01 / ЗАЩИТА</span><span class="service-icon">◇</span></div><h3>Антигравийная защита кузова</h3><p>Защитная плёнка помогает уберечь лакокрасочное покрытие от сколов и царапин.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="1"><div class="service-photo"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=960&q=72" alt="Глянцевый кузов после защитной обработки" loading="eager" decoding="async" fetchpriority="auto" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">02 / ПОКРЫТИЕ</span><span class="service-icon">✧</span></div><h3>Защитное покрытие</h3><p>Защитный состав для блеска кузова и более простого ухода за автомобилем.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="2"><div class="service-photo"><img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=960&q=72" alt="Салон современного автомобиля" loading="lazy" decoding="async" fetchpriority="auto" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">03 / КОМФОРТ</span><span class="service-icon">⌁</span></div><h3>Шумоизоляция автомобиля</h3><p>Снижение дорожного шума и вибраций для более комфортных поездок.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="3"><div class="service-photo"><img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=960&q=72" alt="Уход за подкапотным пространством" loading="lazy" decoding="async" fetchpriority="auto" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">04 / МОТОР</span><span class="service-icon">◉</span></div><h3>Химчистка мотора</h3><p>Аккуратная очистка подкапотного пространства с учётом особенностей автомобиля.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="4"><div class="service-photo"><img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=960&q=72" alt="Чистый салон автомобиля" loading="lazy" decoding="async" fetchpriority="auto" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">05 / ИНТЕРЬЕР</span><span class="service-icon">⌂</span></div><h3>Химчистка салона</h3><p>Глубокая очистка обивки, ковров и труднодоступных зон интерьера.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="5"><div class="service-photo"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=960&q=72" alt="Полировка и покрытие кузова" loading="lazy" decoding="async" fetchpriority="auto" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">06 / БЛЕСК</span><span class="service-icon">✦</span></div><h3>Покрытие кузова</h3><p>Финишный уход за лакокрасочным покрытием для выразительного внешнего вида.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
+<article class="service glass reveal" data-service="6"><div class="service-photo"><img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=960&q=72" alt="Детейлинг-мойка автомобиля" loading="lazy" decoding="async" fetchpriority="auto" sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')"></div><div class="service-content"><div class="service-top"><span class="service-num">07 / УХОД</span><span class="service-icon">≋</span></div><h3>Detailing wash</h3><p>Деликатная мойка кузова, колёс и внешних элементов с вниманием к деталям.</p><span class="service-more">Подробнее об услуге <b>↗</b></span></div></article>
 </div></div></section>
 <section class="section" id="approach"><div class="wrap method"><div class="method-visual glass reveal"><div class="monogram">SL.</div></div><div class="method-copy reveal"><div class="eyebrow">Наш подход</div><h2 class="section-title">Красота —<br>в точности.</h2><p class="section-desc">Подбираем уход под состояние автомобиля и ваши задачи. Никаких случайных решений — только внимательная работа с каждой поверхностью.</p><div class="steps"><div class="step"><b>01</b><div><h3>Осмотр и консультация</h3><p>Обсуждаем состояние автомобиля и желаемый результат.</p></div></div><div class="step"><b>02</b><div><h3>Подбор решения</h3><p>Определяем подходящие услуги и материалы.</p></div></div><div class="step"><b>03</b><div><h3>Работа с деталями</h3><p>Аккуратно выполняем выбранные процедуры.</p></div></div></div></div></div></section>
 <section class="section" id="about"><div class="wrap"><div class="about-panel glass reveal"><div><div class="eyebrow">SL.Detailing68 · Тамбов</div><h2 class="section-title">Ваш автомобиль.<br><span style="color:#a8cde1">В лучшей форме.</span></h2></div><div><p>Студия ухода за автомобилями SL.Detailing68. Защита кузова, глубокая очистка и забота о комфорте — чтобы автомобиль радовал своим видом и состоянием каждый день.</p><div class="numbers"><div class="number"><b>07</b><span>направлений ухода</span></div><div class="number"><b>360°</b><span>внимание к деталям</span></div><div class="number"><b>68</b><span>Тамбов</span></div></div></div></div></div></section>
@@ -181,10 +227,10 @@ const canvas=document.querySelector('#car3d'),hero=document.querySelector('#home
 let scene,camera,renderer,car,clock,scrollProgress=0,mouseX=0,mouseY=0,controls;
 try{
  scene=new THREE.Scene();
- camera=new THREE.PerspectiveCamera(32,1,.1,100);camera.position.set(6.7,3.2,8.7);
+ camera=new THREE.PerspectiveCamera(32,1,.1,100);camera.position.set(5.9,2.65,7.6);
  renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
- renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.35));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
- controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.enablePan=false;controls.enableZoom=true;controls.touches.ONE=THREE.TOUCH.ROTATE;controls.touches.TWO=THREE.TOUCH.DOLLY_ROTATE;controls.minDistance=5.8;controls.maxDistance=13;controls.rotateSpeed=.72;controls.zoomSpeed=.7;controls.minPolarAngle=.82;controls.maxPolarAngle=1.48;controls.target.set(0,.2,0);controls.autoRotate=true;controls.autoRotateSpeed=.45;
+ renderer.setPixelRatio(Math.min(devicePixelRatio||1, window.innerWidth<700?.95:1.2));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
+ controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.enablePan=false;controls.enableZoom=true;controls.touches.ONE=THREE.TOUCH.ROTATE;controls.touches.TWO=THREE.TOUCH.DOLLY_ROTATE;controls.minDistance=4.2;controls.maxDistance=11;controls.rotateSpeed=.72;controls.zoomSpeed=.7;controls.minPolarAngle=.82;controls.maxPolarAngle=1.48;controls.target.set(0,.2,0);controls.autoRotate=true;controls.autoRotateSpeed=.32;
  scene.add(new THREE.HemisphereLight(0xd9edff,0x111923,2.2));
  const key=new THREE.DirectionalLight(0xffffff,4);key.position.set(4,7,6);scene.add(key);
  const rim=new THREE.DirectionalLight(0x80c9ed,4);rim.position.set(-5,3,-5);scene.add(rim);
@@ -213,9 +259,9 @@ try{
  // Мгновенно показываем резервную 3D-машину, пока загружается детальная GLB-модель.
  fallbackCar();
  const loader=new GLTFLoader();
- loader.load('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/CarConcept/glTF-Binary/CarConcept.glb',gltf=>{
+ loader.load('https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/CarConcept/glTF-Binary/CarConcept.glb',gltf=>{
   const model=gltf.scene;const box=new THREE.Box3().setFromObject(model),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());
-  model.position.sub(center);const max=Math.max(size.x,size.y,size.z);const modelScale=5.0/max;model.scale.setScalar(modelScale);model.position.y=-(box.min.y-center.y)*modelScale;model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material){o.material.metalness=Math.max(o.material.metalness||0,.35);o.material.roughness=Math.min(o.material.roughness??.5,.34)}}});
+  model.position.sub(center);const max=Math.max(size.x,size.y,size.z);const modelScale=6.3/max;model.scale.setScalar(modelScale);model.position.y=-(box.min.y-center.y)*modelScale;model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material){o.material.metalness=Math.max(o.material.metalness||0,.35);o.material.roughness=Math.min(o.material.roughness??.5,.34)}}});
   carRoot.clear();carRoot.add(model);carRoot.rotation.y=-.42;document.getElementById('carStatus').textContent='3D-МОДЕЛЬ ГОТОВА · ВРАЩАЙТЕ ПАЛЬЦЕМ';
  },event=>{if(event.total){const pct=Math.round(event.loaded/event.total*100);document.getElementById('carStatus').textContent='ЗАГРУЖАЕМ 3D-МОДЕЛЬ · '+pct+'%';}},error=>{console.error('3D model failed to load',error);document.getElementById('carStatus').textContent='3D-АВТОМОБИЛЬ · МОЖНО ВРАЩАТЬ';});
  carRoot.rotation.y=-.42;carRoot.position.y=-.1;
@@ -223,9 +269,9 @@ try{
  function resize(){const w=canvas.clientWidth||innerWidth,h=canvas.clientHeight||innerHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
  const ro=new ResizeObserver(resize);ro.observe(canvas);resize();
  canvas.style.cursor='grab';canvas.addEventListener('pointerdown',()=>canvas.style.cursor='grabbing');canvas.addEventListener('pointerup',()=>canvas.style.cursor='grab');
- function onScroll(){const r=hero.getBoundingClientRect(),travel=hero.offsetHeight-innerHeight;scrollProgress=Math.max(0,Math.min(1,-r.top/Math.max(1,travel)));copy.style.opacity=String(Math.max(0,1-scrollProgress*2.6));}
+ function onScroll(){const r=hero.getBoundingClientRect(),travel=hero.offsetHeight-innerHeight;scrollProgress=Math.max(0,Math.min(1,-r.top/Math.max(1,travel)));copy.style.opacity=String(Math.max(0,1-scrollProgress*2.6));const tone=scrollProgress;document.documentElement.style.setProperty('--scroll-tone',tone.toFixed(3));document.body.style.backgroundColor=tone<.34?'#e9eef1':tone<.68?'#e4ebef':'#edf0f2';}
  addEventListener('scroll',onScroll,{passive:true});onScroll();
- function frame(){requestAnimationFrame(frame);const t=clock.getElapsedTime();const p=scrollProgress;carRoot.position.y=-.1+Math.sin(t*.9)*.035-p*.45;const s=1-p*.24;carRoot.scale.setScalar(s);controls.target.y=.2-p*.1;controls.update();renderer.render(scene,camera)}
+ let raf=0,lastFrame=0;function frame(now=0){raf=requestAnimationFrame(frame);if(document.hidden)return;if(now-lastFrame<30)return;lastFrame=now;const t=clock.getElapsedTime();const p=scrollProgress;carRoot.position.y=-.1+Math.sin(t*.9)*.025-p*.32;const s=1.12-p*.18;carRoot.scale.setScalar(s);controls.target.y=.2-p*.08;controls.update();renderer.render(scene,camera)}document.addEventListener('visibilitychange',()=>{if(!document.hidden){lastFrame=0;}});
  frame();
 }catch(e){console.error('3D initialization failed',e);canvas.style.background='radial-gradient(ellipse,rgba(110,175,210,.28),transparent 65%)';try{fallbackCar();}catch(_){ }}
 
