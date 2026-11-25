@@ -342,8 +342,25 @@ function start(){
   function tryVehicleLoad(){
     if(disposed||!scene)return;
     if(attempt>=vehicleUrls.length*transcoderPaths.length){
-      status.textContent='НЕ УДАЛОСЬ ЗАГРУЗИТЬ 3D-АВТОМОБИЛЬ';
-      console.error('All real vehicle loading attempts failed:',lastVehicleError);
+      console.warn('Primary Family Sedan could not be loaded; switching to a real standalone GLB vehicle model.',lastVehicleError);
+      status.textContent='ЗАГРУЖАЕМ РЕЗЕРВНУЮ 3D-МОДЕЛЬ АВТОМОБИЛЯ';
+      const backupLoader=new GLTFLoader();
+      backupLoader.setMeshoptDecoder(MeshoptDecoder);
+      backupLoader.load('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/CarConcept/GLB/CarConcept.glb',gltf=>{
+        if(disposed||!scene)return;
+        const model=gltf.scene;
+        const bounds=new THREE.Box3().setFromObject(model),dims=bounds.getSize(new THREE.Vector3()),mid=bounds.getCenter(new THREE.Vector3());
+        const scale=4.8/Math.max(dims.x,dims.y,dims.z);
+        model.scale.setScalar(scale);
+        model.position.set(-mid.x*scale,-bounds.min.y*scale,-mid.z*scale);
+        model.traverse(obj=>{if(obj.isMesh){obj.castShadow=true;obj.receiveShadow=true;}});
+        carRoot.add(model);
+        const poster=document.querySelector('#carPoster');if(poster)poster.style.display='none';
+        status.textContent='ИНТЕРАКТИВНАЯ 3D-МОДЕЛЬ АВТОМОБИЛЯ · ВРАЩАЙТЕ МЫШЬЮ';
+      },undefined,backupError=>{
+        console.error('Both real vehicle models failed to load:',backupError);
+        status.textContent='3D-МОДЕЛЬ НЕДОСТУПНА · ПРОВЕРЬТЕ ДОСТУП К WEBGL И ИНТЕРНЕТУ';
+      });
       return;
     }
     const urlIndex=Math.floor(attempt/transcoderPaths.length);
