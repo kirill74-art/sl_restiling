@@ -217,6 +217,7 @@ img.image-unavailable{opacity:0;visibility:hidden}
 
 </style>
 
+<link rel="preload" as="fetch" href="https://tevy.dev/models/family-sedan/v1/lod1.glb" crossorigin="anonymous">
 </head>
 <body><div class="grain"></div>
 <div class="topbar"><div class="wrap topbar-in"><a class="brand" href="#">SL<b>.</b>DETAILING68</a><span class="top-note">Premium automotive care · Tambov</span></div></div>
@@ -246,7 +247,7 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 </script>
 <script type="module">
-let THREE, OrbitControls, GLTFLoader, KTX2Loader, MeshoptDecoder;
+let THREE, OrbitControls, GLTFLoader, KTX2Loader, MeshoptDecoder, importFailure=null;
 try {
   THREE = await import('three');
   ({ OrbitControls } = await import('three/addons/controls/OrbitControls.js'));
@@ -263,14 +264,15 @@ try {
     ({ MeshoptDecoder } = await import('https://esm.sh/three@0.186.1/examples/jsm/libs/meshopt_decoder.module.js?bundle'));
   } catch (backupError) {
     console.error('Three.js could not be loaded from either CDN', backupError);
+    importFailure=backupError;
     const s = document.querySelector('#carStatus');
     if (s) s.textContent = '3D-ПРЕДПРОСМОТР НЕДОСТУПЕН';
-    const c = document.querySelector('#car3d');
-    if (c) { const p=document.createElement('div'); p.className='car-poster'; p.innerHTML='<svg viewBox="0 0 760 280" role="img" aria-label="Силуэт автомобиля"><defs><linearGradient id="paint" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#d9edf7"/><stop offset=".55" stop-color="#729bb2"/><stop offset="1" stop-color="#263f52"/></linearGradient></defs><ellipse cx="380" cy="235" rx="290" ry="24" fill="#75a9c2" opacity=".25"/><path d="M110 188 Q130 145 210 137 L285 75 Q310 56 360 55 L470 60 Q510 65 548 130 L625 148 Q660 157 674 190 L665 211 L95 211Z" fill="url(#paint)" stroke="#d9f1fc" stroke-opacity=".7" stroke-width="4"/><path d="M230 132 L300 79 Q320 68 360 68 L455 72 Q480 76 516 132Z" fill="#102635" stroke="#b9dceb" stroke-width="4"/><path d="M350 72 L350 132 M463 76 L495 132" stroke="#91b9ce" stroke-width="3"/><circle cx="230" cy="204" r="43" fill="#101820" stroke="#a9c8d8" stroke-width="8"/><circle cx="230" cy="204" r="20" fill="#a8c6d5"/><circle cx="555" cy="204" r="43" fill="#101820" stroke="#a9c8d8" stroke-width="8"/><circle cx="555" cy="204" r="20" fill="#a8c6d5"/><path d="M112 173 L165 164 M622 166 L661 176" stroke="#d9f4ff" stroke-width="8" stroke-linecap="round"/></svg>'; c.replaceWith(p); }
+    console.error('3D dependencies unavailable; no substitute artwork will be shown.');
   }
 }
 const canvas=document.querySelector('#car3d'),hero=document.querySelector('#home'),copy=document.querySelector('#heroCopy'),status=document.querySelector('#carStatus');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(importFailure||!THREE||!GLTFLoader){if(status)status.textContent='НЕ УДАЛОСЬ ЗАГРУЗИТЬ 3D-ДВИЖОК';throw importFailure||new Error('Three.js unavailable');}
 let scene,camera,renderer,controls,carRoot,raf=0,last=0,progress=0,inView=false,disposed=false;
 function buildCar(){
  const root=new THREE.Group();
@@ -356,13 +358,8 @@ function start(){
     if(poster)poster.style.display='none';
     status.textContent='3D-АВТОМОБИЛЬ · ВРАЩАЙТЕ МЫШЬЮ ИЛИ ПАЛЬЦЕМ';
   },event=>{if(event.total>0)status.textContent='ЗАГРУЗКА 3D · '+Math.round(event.loaded/event.total*100)+'%';},err=>{
-    console.error('Vehicle GLB failed to load; using built-in 3D vehicle',err);
-    if(!disposed&&carRoot&&!carRoot.children.length){
-      carRoot.add(buildCar());
-      const poster=document.querySelector('#carPoster');
-      if(poster)poster.style.display='none';
-      status.textContent='ИНТЕРАКТИВНАЯ 3D-МОДЕЛЬ · ВРАЩАЙТЕ МЫШЬЮ';
-    }
+    console.error('REAL VEHICLE MODEL FAILED TO LOAD:',err);
+    if(!disposed)status.textContent='ОШИБКА ЗАГРУЗКИ 3D-АВТОМОБИЛЯ · '+(err?.message||'проверьте соединение');
   });
   // Do not replace the real vehicle just because desktop decoding is slower.
   // The detailed GLB remains the preferred model; the 3D fallback is used only on a real load error.
@@ -371,7 +368,7 @@ function start(){
   controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.045;controls.enablePan=false;controls.enableZoom=true;controls.autoRotate=!reduced;controls.autoRotateSpeed=.28;controls.minDistance=4.4;controls.maxDistance=8.5;controls.minPolarAngle=.85;controls.maxPolarAngle=1.48;controls.target.set(0,.65,0);controls.update();
   const resize=()=>{if(!renderer)return;const w=Math.max(1,canvas.clientWidth),h=Math.max(1,canvas.clientHeight);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()};
   const ro=new ResizeObserver(resize);ro.observe(canvas);resize();
-  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(raf);status.textContent='3D-ПРЕДПРОСМОТР';fallback();},{once:true});
+  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(raf);status.textContent='ПОТЕРЯНО СОЕДИНЕНИЕ С 3D-ГРАФИКОЙ · ОБНОВИТЕ СТРАНИЦУ';},{once:true});
   status.textContent='ЗАГРУЖАЕМ НАСТОЯЩУЮ 3D-МОДЕЛЬ';
   const tick=now=>{raf=0;if(disposed||!renderer||!inView||document.hidden)return;const limit=16.67;if(now-last<limit){raf=requestAnimationFrame(tick);return}last=now;const p=progress;if(!reduced){carRoot.position.y=Math.sin(now*.00065)*.025-p*.22;carRoot.rotation.z=Math.sin(now*.0003)*.006;carRoot.scale.setScalar((mobile ? 0.88 : 0.98)-p*.09)}camera.position.y=2.8-p*.32;controls.target.y=.65-p*.12;controls.update();renderer.render(scene,camera);const posterEl=document.querySelector('#carPoster');if(posterEl&&carRoot.children.length)posterEl.classList.add('poster-hidden');raf=requestAnimationFrame(tick)};
   const run=()=>{if(!raf&&!disposed&&inView&&!document.hidden)raf=requestAnimationFrame(tick)};
@@ -380,10 +377,10 @@ function start(){
   const io=new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;if(inView)run();else stop()},{threshold:.02});io.observe(hero);
   addEventListener('pagehide',()=>{disposed=true;stop();io.disconnect();ro.disconnect();controls.dispose();renderer.dispose()},{once:true});
   if(inView)run();
- }catch(err){console.error('3D renderer initialization failed:',err);status.textContent='3D НЕ ЗАПУСТИЛОСЬ · ПРОВЕРЬТЕ WEBGL';try{fallback()}catch(_){}}
+ }catch(err){console.error('3D renderer initialization failed:',err);status.textContent='3D НЕ ЗАПУСТИЛОСЬ · '+(err?.message||'ОШИБКА WEBGL');}
 }
-// Start the renderer immediately; the lightweight SVG poster stays visible while Three.js loads.
-requestAnimationFrame(()=>setTimeout(start,180));
+// Initialize the real 3D renderer immediately; never substitute a sticker or fake vehicle.
+start();
 let scrollBusy=false;function onScroll(){if(scrollBusy)return;scrollBusy=true;requestAnimationFrame(()=>{const r=hero.getBoundingClientRect(),range=Math.max(1,hero.offsetHeight-innerHeight);progress=Math.max(0,Math.min(1,-r.top/range));copy.style.opacity=String(Math.max(0,1-progress*2.4));scrollBusy=false})}
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 </script>
