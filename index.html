@@ -217,7 +217,7 @@ img.image-unavailable{opacity:0;visibility:hidden}
 
 </style>
 
-<link rel="preload" as="fetch" href="https://tevy.dev/models/family-sedan/v1/lod1.glb" crossorigin="anonymous">
+<link rel="preload" as="fetch" href="./family-sedan.glb" crossorigin="anonymous">
 </head>
 <body><div class="grain"></div>
 <div class="topbar"><div class="wrap topbar-in"><a class="brand" href="#">SL<b>.</b>DETAILING68</a><span class="top-note">Premium automotive care · Tambov</span></div></div>
@@ -331,11 +331,13 @@ function start(){
   carRoot=new THREE.Group();scene.add(carRoot);
   // Load the real textured sedan. Retry alternate LOD/transcoder CDN automatically if a desktop CDN fails.
   const vehicleUrls=[
+    './family-sedan.glb',
     'https://tevy.dev/models/family-sedan/v1/lod1.glb',
     'https://tevy.dev/models/family-sedan/lod1.glb',
     'https://tevy.dev/models/family-sedan/v1/lod0.glb'
   ];
   const transcoderPaths=[
+    './basis/',
     'https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/libs/basis/',
     'https://unpkg.com/three@0.186.1/examples/jsm/libs/basis/'
   ];
