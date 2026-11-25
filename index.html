@@ -246,15 +246,17 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 </script>
 <script type="module">
-let THREE, OrbitControls;
+let THREE, OrbitControls, GLTFLoader;
 try {
   THREE = await import('three');
   ({ OrbitControls } = await import('three/addons/controls/OrbitControls.js'));
+  ({ GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js'));
 } catch (primaryError) {
   console.warn('Primary Three.js CDN failed; trying backup CDN', primaryError);
   try {
     THREE = await import('https://esm.sh/three@0.160.0?bundle');
     ({ OrbitControls } = await import('https://esm.sh/three@0.160.0/examples/jsm/controls/OrbitControls.js?bundle&external=three'));
+    ({ GLTFLoader } = await import('https://esm.sh/three@0.160.0/examples/jsm/loaders/GLTFLoader.js?bundle&external=three'));
   } catch (backupError) {
     console.error('Three.js could not be loaded from either CDN', backupError);
     const s = document.querySelector('#carStatus');
@@ -318,14 +320,39 @@ function start(){
   const key=new THREE.DirectionalLight(0xfff4e8,3.3);key.position.set(4,7,6);scene.add(key);
   const fill=new THREE.DirectionalLight(0x8cc9e8,2.3);fill.position.set(-5,3,4);scene.add(fill);
   const rim=new THREE.DirectionalLight(0x6caed0,3.4);rim.position.set(-4,4,-6);scene.add(rim);
-  carRoot=buildCar();scene.add(carRoot);
+  carRoot=new THREE.Group();scene.add(carRoot);
+  // Load a real textured 3D vehicle model; keep the poster visible until it renders.
+  const loader=new GLTFLoader();
+  loader.load('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Buggy/glTF-Binary/Buggy.glb',gltf=>{
+    if(disposed||!scene)return;
+    const model=gltf.scene;
+    const box=new THREE.Box3().setFromObject(model),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());
+    model.position.sub(center);
+    const maxDim=Math.max(size.x,size.y,size.z);
+    model.scale.setScalar(4.8/maxDim);
+    model.position.y-=box.min.y*4.8/maxDim;
+    model.traverse(obj=>{
+      if(!obj.isMesh)return;
+      obj.castShadow=true;obj.receiveShadow=true;
+      const mats=Array.isArray(obj.material)?obj.material:[obj.material];
+      mats.forEach(mat=>{
+        if(!mat)return;
+        const n=(mat.name||'').toLowerCase();
+        if(/paint|body|blue|color/.test(n)&&mat.color)mat.color.set('#7898ad');
+        if(mat.metalness!==undefined)mat.metalness=Math.max(mat.metalness,.38);
+        if(mat.roughness!==undefined)mat.roughness=Math.min(mat.roughness,.32);
+      });
+    });
+    carRoot.add(model);
+    status.textContent='3D-АВТОМОБИЛЬ · ВРАЩАЙТЕ МЫШЬЮ ИЛИ ПАЛЬЦЕМ';
+  },undefined,err=>{console.error('Vehicle GLB failed to load',err);status.textContent='НЕ УДАЛОСЬ ЗАГРУЗИТЬ 3D-МОДЕЛЬ';});
   const shadow=new THREE.Mesh(new THREE.CircleGeometry(3.1,48),new THREE.MeshBasicMaterial({color:0x7eb2ca,transparent:true,opacity:.16,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=-.12;scene.add(shadow);
   controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.065;controls.enablePan=false;controls.enableZoom=true;controls.autoRotate=!reduced;controls.autoRotateSpeed=.38;controls.minDistance=4.4;controls.maxDistance=8.5;controls.minPolarAngle=.85;controls.maxPolarAngle=1.48;controls.target.set(0,.65,0);controls.update();
   const resize=()=>{if(!renderer)return;const w=Math.max(1,canvas.clientWidth),h=Math.max(1,canvas.clientHeight);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()};
   const ro=new ResizeObserver(resize);ro.observe(canvas);resize();
   canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(raf);status.textContent='3D-ПРЕДПРОСМОТР';fallback();},{once:true});
   status.textContent='3D-АВТОМОБИЛЬ · ВРАЩАЙТЕ МЫШЬЮ ИЛИ ПАЛЬЦЕМ';
-  const tick=now=>{raf=0;if(disposed||!renderer||!inView||document.hidden)return;const limit=mobile?33:22;if(now-last<limit){raf=requestAnimationFrame(tick);return}last=now;const p=progress;if(!reduced){carRoot.position.y=Math.sin(now*.00065)*.025-p*.22;carRoot.rotation.z=Math.sin(now*.0003)*.006;carRoot.scale.setScalar((mobile ? 0.88 : 0.98)-p*.09)}camera.position.y=2.8-p*.32;controls.target.y=.65-p*.12;controls.update();renderer.render(scene,camera);const posterEl=document.querySelector('#carPoster');if(posterEl)posterEl.classList.add('poster-hidden');raf=requestAnimationFrame(tick)};
+  const tick=now=>{raf=0;if(disposed||!renderer||!inView||document.hidden)return;const limit=mobile?33:22;if(now-last<limit){raf=requestAnimationFrame(tick);return}last=now;const p=progress;if(!reduced){carRoot.position.y=Math.sin(now*.00065)*.025-p*.22;carRoot.rotation.z=Math.sin(now*.0003)*.006;carRoot.scale.setScalar((mobile ? 0.88 : 0.98)-p*.09)}camera.position.y=2.8-p*.32;controls.target.y=.65-p*.12;controls.update();renderer.render(scene,camera);const posterEl=document.querySelector('#carPoster');if(posterEl&&carRoot.children.length)posterEl.classList.add('poster-hidden');raf=requestAnimationFrame(tick)};
   const run=()=>{if(!raf&&!disposed&&inView&&!document.hidden)raf=requestAnimationFrame(tick)};
   const stop=()=>{if(raf){cancelAnimationFrame(raf);raf=0}};
   document.addEventListener('visibilitychange',()=>document.hidden?stop():run());
@@ -339,7 +366,7 @@ requestAnimationFrame(()=>setTimeout(start,180));
 let scrollBusy=false;function onScroll(){if(scrollBusy)return;scrollBusy=true;requestAnimationFrame(()=>{const r=hero.getBoundingClientRect(),range=Math.max(1,hero.offsetHeight-innerHeight);progress=Math.max(0,Math.min(1,-r.top/range));copy.style.opacity=String(Math.max(0,1-progress*2.4));scrollBusy=false})}
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 </script>
-</body></html>
+<footer class="model-credit" style="text-align:center;padding:8px 12px;font-size:10px;color:#8195a3">3D vehicle model: Khronos glTF Sample Assets · Buggy · CC BY 4.0</footer></body></html>
 <style>
 /* Keep the first screen visible immediately, even while WebGL initializes. */
 #carPoster{background:transparent!important}
