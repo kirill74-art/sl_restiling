@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#080b10">
 <meta name="description" content="SL.Detailing68 — премиальный детейлинг в Тамбове. Защита кузова, уход и комфорт вашего автомобиля.">
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"}}</script>
 <title>SL.Detailing68 — Искусство безупречного ухода</title>
 <style>
 :root{--ink:#23323d;--muted:#61727e;--blue:#6f94a9;--line:rgba(82,112,131,.18);--max:1180px}
@@ -256,9 +256,11 @@ try {
 } catch (primaryError) {
   console.warn('Primary Three.js CDN failed; trying backup CDN', primaryError);
   try {
-    THREE = await import('https://esm.sh/three@0.160.0?bundle');
-    ({ OrbitControls } = await import('https://esm.sh/three@0.160.0/examples/jsm/controls/OrbitControls.js?bundle&external=three'));
-    ({ GLTFLoader } = await import('https://esm.sh/three@0.160.0/examples/jsm/loaders/GLTFLoader.js?bundle&external=three'));
+    THREE = await import('https://esm.sh/three@0.186.1?bundle');
+    ({ OrbitControls } = await import('https://esm.sh/three@0.186.1/examples/jsm/controls/OrbitControls.js?bundle&external=three'));
+    ({ GLTFLoader } = await import('https://esm.sh/three@0.186.1/examples/jsm/loaders/GLTFLoader.js?bundle&external=three'));
+    ({ KTX2Loader } = await import('https://esm.sh/three@0.186.1/examples/jsm/loaders/KTX2Loader.js?bundle&external=three'));
+    ({ MeshoptDecoder } = await import('https://esm.sh/three@0.186.1/examples/jsm/libs/meshopt_decoder.module.js?bundle'));
   } catch (backupError) {
     console.error('Three.js could not be loaded from either CDN', backupError);
     const s = document.querySelector('#carStatus');
@@ -316,8 +318,8 @@ function start(){
   scene=new THREE.Scene();
   camera=new THREE.PerspectiveCamera(30,1,.1,100);camera.position.set(5.8,2.35,6.5);
   const mobile=matchMedia('(max-width:700px)').matches;
-  renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:!mobile,powerPreference:'high-performance',stencil:false,depth:true});
-  renderer.setPixelRatio(Math.min(devicePixelRatio||1,mobile?1.25:1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.18;
+  renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:false,powerPreference:'default',stencil:false,depth:true,preserveDrawingBuffer:false});
+  renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.15));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.18;
   scene.add(new THREE.HemisphereLight(0xdceeff,0x15202a,2.1));
   const key=new THREE.DirectionalLight(0xfff4e8,3.3);key.position.set(4,7,6);scene.add(key);
   const fill=new THREE.DirectionalLight(0x8cc9e8,2.3);fill.position.set(-5,3,4);scene.add(fill);
@@ -325,7 +327,7 @@ function start(){
   carRoot=new THREE.Group();scene.add(carRoot);
   // Load a real textured 3D vehicle model; keep the poster visible until it renders.
   const loader=new GLTFLoader();
-  const ktx2=new KTX2Loader().setTranscoderPath('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/basis/').detectSupport(renderer);
+  const ktx2=new KTX2Loader().setTranscoderPath('https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/libs/basis/').detectSupport(renderer);
   loader.setKTX2Loader(ktx2);
   loader.setMeshoptDecoder(MeshoptDecoder);
   status.textContent='ЗАГРУЖАЕМ НАСТОЯЩУЮ 3D-МОДЕЛЬ';
@@ -351,14 +353,14 @@ function start(){
     });
     carRoot.add(model);
     status.textContent='3D-АВТОМОБИЛЬ · ВРАЩАЙТЕ МЫШЬЮ ИЛИ ПАЛЬЦЕМ';
-  },undefined,err=>{console.error('Vehicle GLB failed to load',err);status.textContent='ОШИБКА ЗАГРУЗКИ 3D-МОДЕЛИ';});
+  },event=>{if(event.total>0)status.textContent='ЗАГРУЗКА 3D · '+Math.round(event.loaded/event.total*100)+'%';},err=>{console.error('Vehicle GLB failed to load',err);status.textContent='ОШИБКА ЗАГРУЗКИ 3D-МОДЕЛИ';});
   const shadow=new THREE.Mesh(new THREE.CircleGeometry(3.1,48),new THREE.MeshBasicMaterial({color:0x7eb2ca,transparent:true,opacity:.16,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=-.12;scene.add(shadow);
-  controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.065;controls.enablePan=false;controls.enableZoom=true;controls.autoRotate=!reduced;controls.autoRotateSpeed=.38;controls.minDistance=4.4;controls.maxDistance=8.5;controls.minPolarAngle=.85;controls.maxPolarAngle=1.48;controls.target.set(0,.65,0);controls.update();
+  controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.045;controls.enablePan=false;controls.enableZoom=true;controls.autoRotate=!reduced;controls.autoRotateSpeed=.28;controls.minDistance=4.4;controls.maxDistance=8.5;controls.minPolarAngle=.85;controls.maxPolarAngle=1.48;controls.target.set(0,.65,0);controls.update();
   const resize=()=>{if(!renderer)return;const w=Math.max(1,canvas.clientWidth),h=Math.max(1,canvas.clientHeight);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()};
   const ro=new ResizeObserver(resize);ro.observe(canvas);resize();
   canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(raf);status.textContent='3D-ПРЕДПРОСМОТР';fallback();},{once:true});
   status.textContent='ЗАГРУЖАЕМ НАСТОЯЩУЮ 3D-МОДЕЛЬ';
-  const tick=now=>{raf=0;if(disposed||!renderer||!inView||document.hidden)return;const limit=mobile?33:22;if(now-last<limit){raf=requestAnimationFrame(tick);return}last=now;const p=progress;if(!reduced){carRoot.position.y=Math.sin(now*.00065)*.025-p*.22;carRoot.rotation.z=Math.sin(now*.0003)*.006;carRoot.scale.setScalar((mobile ? 0.88 : 0.98)-p*.09)}camera.position.y=2.8-p*.32;controls.target.y=.65-p*.12;controls.update();renderer.render(scene,camera);const posterEl=document.querySelector('#carPoster');if(posterEl&&carRoot.children.length)posterEl.classList.add('poster-hidden');raf=requestAnimationFrame(tick)};
+  const tick=now=>{raf=0;if(disposed||!renderer||!inView||document.hidden)return;const limit=16.67;if(now-last<limit){raf=requestAnimationFrame(tick);return}last=now;const p=progress;if(!reduced){carRoot.position.y=Math.sin(now*.00065)*.025-p*.22;carRoot.rotation.z=Math.sin(now*.0003)*.006;carRoot.scale.setScalar((mobile ? 0.88 : 0.98)-p*.09)}camera.position.y=2.8-p*.32;controls.target.y=.65-p*.12;controls.update();renderer.render(scene,camera);const posterEl=document.querySelector('#carPoster');if(posterEl&&carRoot.children.length)posterEl.classList.add('poster-hidden');raf=requestAnimationFrame(tick)};
   const run=()=>{if(!raf&&!disposed&&inView&&!document.hidden)raf=requestAnimationFrame(tick)};
   const stop=()=>{if(raf){cancelAnimationFrame(raf);raf=0}};
   document.addEventListener('visibilitychange',()=>document.hidden?stop():run());
