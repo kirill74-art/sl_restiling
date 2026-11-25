@@ -327,43 +327,69 @@ function start(){
   const fill=new THREE.DirectionalLight(0x8cc9e8,2.3);fill.position.set(-5,3,4);scene.add(fill);
   const rim=new THREE.DirectionalLight(0x6caed0,3.4);rim.position.set(-4,4,-6);scene.add(rim);
   carRoot=new THREE.Group();scene.add(carRoot);
-  // Load a real textured 3D vehicle model; keep the poster visible until it renders.
-  const loader=new GLTFLoader();
-  const ktx2=new KTX2Loader().setTranscoderPath('https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/libs/basis/').detectSupport(renderer);
-  loader.setKTX2Loader(ktx2);
-  loader.setMeshoptDecoder(MeshoptDecoder);
-  status.textContent='ЗАГРУЖАЕМ НАСТОЯЩУЮ 3D-МОДЕЛЬ';
-  loader.load('https://tevy.dev/models/family-sedan/v1/lod1.glb',gltf=>{
+  // Load the real textured sedan. Retry alternate LOD/transcoder CDN automatically if a desktop CDN fails.
+  const vehicleUrls=[
+    'https://tevy.dev/models/family-sedan/v1/lod1.glb',
+    'https://tevy.dev/models/family-sedan/lod1.glb',
+    'https://tevy.dev/models/family-sedan/v1/lod0.glb'
+  ];
+  const transcoderPaths=[
+    'https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/libs/basis/',
+    'https://unpkg.com/three@0.186.1/examples/jsm/libs/basis/'
+  ];
+  let attempt=0,lastVehicleError=null;
+  status.textContent='ЗАГРУЖАЕМ 3D-АВТОМОБИЛЬ';
+  function tryVehicleLoad(){
     if(disposed||!scene)return;
-    const model=gltf.scene;
-    const box=new THREE.Box3().setFromObject(model),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());
-    const maxDim=Math.max(size.x,size.y,size.z);
-    const modelScale=4.8/maxDim;
-    model.scale.setScalar(modelScale);
-    model.position.set(-center.x*modelScale,-box.min.y*modelScale,-center.z*modelScale);
-    model.traverse(obj=>{
-      if(!obj.isMesh)return;
-      obj.castShadow=true;obj.receiveShadow=true;
-      const mats=Array.isArray(obj.material)?obj.material:[obj.material];
-      mats.forEach(mat=>{
-        if(!mat)return;
-        const n=(mat.name||'').toLowerCase();
-        if(/paint|body|blue|color/.test(n)&&mat.color)mat.color.set('#7898ad');
-        if(mat.metalness!==undefined)mat.metalness=Math.max(mat.metalness,.38);
-        if(mat.roughness!==undefined)mat.roughness=Math.min(mat.roughness,.32);
+    if(attempt>=vehicleUrls.length*transcoderPaths.length){
+      status.textContent='НЕ УДАЛОСЬ ЗАГРУЗИТЬ 3D-АВТОМОБИЛЬ';
+      console.error('All real vehicle loading attempts failed:',lastVehicleError);
+      return;
+    }
+    const urlIndex=Math.floor(attempt/transcoderPaths.length);
+    const pathIndex=attempt%transcoderPaths.length;
+    const url=vehicleUrls[urlIndex],transcoderPath=transcoderPaths[pathIndex];
+    attempt++;
+    const loader=new GLTFLoader();
+    const ktx2=new KTX2Loader().setTranscoderPath(transcoderPath).detectSupport(renderer);
+    loader.setKTX2Loader(ktx2);
+    loader.setMeshoptDecoder(MeshoptDecoder);
+    loader.load(url,gltf=>{
+      if(disposed||!scene){ktx2.dispose();return;}
+      const model=gltf.scene;
+      const box=new THREE.Box3().setFromObject(model),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());
+      const maxDim=Math.max(size.x,size.y,size.z);
+      const modelScale=4.8/maxDim;
+      model.scale.setScalar(modelScale);
+      model.position.set(-center.x*modelScale,-box.min.y*modelScale,-center.z*modelScale);
+      model.traverse(obj=>{
+        if(!obj.isMesh)return;
+        obj.castShadow=true;obj.receiveShadow=true;
+        const mats=Array.isArray(obj.material)?obj.material:[obj.material];
+        mats.forEach(mat=>{
+          if(!mat)return;
+          const n=(mat.name||'').toLowerCase();
+          if(/paint|body|blue|color/.test(n)&&mat.color)mat.color.set('#7898ad');
+          if(mat.metalness!==undefined)mat.metalness=Math.max(mat.metalness,.38);
+          if(mat.roughness!==undefined)mat.roughness=Math.min(mat.roughness,.32);
+        });
       });
+      carRoot.add(model);
+      const poster=document.querySelector('#carPoster');if(poster)poster.style.display='none';
+      status.textContent='3D-АВТОМОБИЛЬ · ВРАЩАЙТЕ МЫШЬЮ ИЛИ ПАЛЬЦЕМ';
+      ktx2.dispose();
+    },event=>{
+      if(event.total>0)status.textContent='ЗАГРУЗКА 3D · '+Math.round(event.loaded/event.total*100)+'%';
+    },err=>{
+      lastVehicleError=err;
+      console.warn('Vehicle load attempt failed; retrying with alternate asset/transcoder:',{url,transcoderPath,error:err});
+      ktx2.dispose();
+      tryVehicleLoad();
     });
-    carRoot.add(model);
-    const poster=document.querySelector('#carPoster');
-    if(poster)poster.style.display='none';
-    status.textContent='3D-АВТОМОБИЛЬ · ВРАЩАЙТЕ МЫШЬЮ ИЛИ ПАЛЬЦЕМ';
-  },event=>{if(event.total>0)status.textContent='ЗАГРУЗКА 3D · '+Math.round(event.loaded/event.total*100)+'%';},err=>{
-    console.error('REAL VEHICLE MODEL FAILED TO LOAD:',err);
-    if(!disposed)status.textContent='ОШИБКА ЗАГРУЗКИ 3D-АВТОМОБИЛЯ · '+(err?.message||'проверьте соединение');
-  });
+  }
+  tryVehicleLoad();
   // Do not replace the real vehicle just because desktop decoding is slower.
   // The detailed GLB remains the preferred model; the 3D fallback is used only on a real load error.
-  const modelLoadStartedAt=performance.now();
   const shadow=new THREE.Mesh(new THREE.CircleGeometry(3.1,48),new THREE.MeshBasicMaterial({color:0x7eb2ca,transparent:true,opacity:.16,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=-.12;scene.add(shadow);
   controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.045;controls.enablePan=false;controls.enableZoom=true;controls.autoRotate=!reduced;controls.autoRotateSpeed=.28;controls.minDistance=4.4;controls.maxDistance=8.5;controls.minPolarAngle=.85;controls.maxPolarAngle=1.48;controls.target.set(0,.65,0);controls.update();
   const resize=()=>{if(!renderer)return;const w=Math.max(1,canvas.clientWidth),h=Math.max(1,canvas.clientHeight);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()};
