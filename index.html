@@ -152,7 +152,7 @@ try{
  }
  // Резервная геометрия намеренно отключена: показываем только загруженную полноценную GLB-модель.
  const loader=new GLTFLoader();
- loader.load('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/CarConcept/glTF-Binary/CarConcept.glb',gltf=>{
+ loader.load('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/CarConcept/GLB/CarConcept.glb',gltf=>{
   const model=gltf.scene;const box=new THREE.Box3().setFromObject(model),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());
   model.position.sub(center);const max=Math.max(size.x,size.y,size.z);model.scale.setScalar(5.0/max);model.position.y-=box.min.y*(5.0/max);model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material){o.material.metalness=Math.max(o.material.metalness||0,.35);o.material.roughness=Math.min(o.material.roughness??.5,.34)}}});
   carRoot.clear();carRoot.add(model);carRoot.rotation.y=-.42;document.getElementById('carStatus').textContent='3D-МОДЕЛЬ ГОТОВА · ВРАЩАЙТЕ ПАЛЬЦЕМ';
