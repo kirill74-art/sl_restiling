@@ -734,5 +734,18 @@ a:focus-visible,button:focus-visible,.service:focus-visible{outline:3px solid #a
  }else reveal.forEach(el=>el.classList.add('visible'));
 })();
 </script>
+
+<style id="desktop-modal-photo-alignment">
+@media(min-width:701px){
+ .service-modal{align-items:center!important;justify-items:center!important}
+ .service-modal .modal-panel{position:relative!important;padding:0!important;margin:0 auto!important;overflow-x:hidden!important}
+ .service-modal .modal-close{position:absolute!important;float:none!important;top:16px!important;right:16px!important;left:auto!important;margin:0!important;z-index:20!important}
+ .service-modal .modal-gallery{position:relative!important;top:0!important;left:0!important;right:0!important;margin:0!important;transform:none!important;translate:none!important;box-sizing:border-box!important}
+ .service-modal .service-photo-track{position:relative!important;top:0!important;margin:0!important;transform:none!important;align-items:stretch!important}
+ .service-modal .service-photo-slide{align-self:stretch!important;margin:0!important;padding:0!important}
+ .service-modal .service-photo-slide img,.service-modal .instant-service-photo{object-position:center center!important;transform:none!important;translate:none!important}
+ .service-modal .modal-body{position:relative!important;clear:both!important}
+}
+</style>
 </body>
 </html>
