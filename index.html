@@ -747,5 +747,42 @@ a:focus-visible,button:focus-visible,.service:focus-visible{outline:3px solid #a
  .service-modal .modal-body{position:relative!important;clear:both!important}
 }
 </style>
+
+<style id="desktop-service-photo-visual-centering">
+@media(min-width:701px){
+ #serviceModal .modal-gallery{
+  display:block!important;
+  width:100%!important;
+  height:clamp(250px,30vw,330px)!important;
+  min-height:250px!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  line-height:0!important;
+  box-sizing:border-box!important;
+ }
+ #serviceModal .modal-gallery .instant-service-photo,
+ #serviceModal .modal-gallery .service-photo-track,
+ #serviceModal .modal-gallery>img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+  object-fit:cover!important;
+  object-position:50% 60%!important;
+  transform:none!important;
+  box-sizing:border-box!important;
+ }
+ #serviceModal .modal-gallery .service-photo-slide{
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+  padding:0!important;
+ }
+}
+</style>
 </body>
 </html>
