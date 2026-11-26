@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded',function(){
  const price=document.getElementById('modalPrice');
  const text=document.getElementById('modalText');
  if(!modal||!title||!price||!text)return;
- function openService(index){const item=data[index];if(!item)return;title.textContent=item.title;price.textContent=item.price;text.textContent=item.description;const extra=document.getElementById("modalExtra");if(extra){extra.replaceChildren();const heading=document.createElement("h3");heading.textContent="Что входит в услугу";extra.appendChild(heading);const list=document.createElement("ul");item.details.forEach(line=>{const li=document.createElement("li");li.textContent=line;list.appendChild(li)});extra.appendChild(list);}const booking=document.getElementById("modalBooking");if(booking){const desktop=window.matchMedia("(min-width:701px)").matches;booking.href=desktop?item.vk:"tel:+79202368999";booking.target=desktop?"_blank":"_self";booking.textContent=desktop?"Открыть услугу и записаться в VK ↗":"Позвонить и записаться ↗";}const gallery=document.getElementById("modalGallery");gallery.replaceChildren();const card=document.querySelector(`.service[data-service="${index}"]`);const cardPhoto=card?.querySelector(".service-photo img");if(cardPhoto){const photo=document.createElement("img");photo.className="instant-service-photo";photo.alt=item.title;photo.loading="eager";photo.decoding="async";photo.fetchPriority="high";photo.src=cardPhoto.currentSrc||cardPhoto.src;photo.onerror=()=>{photo.style.display="none";};gallery.appendChild(photo);}modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";const close=modal.querySelector(".modal-close");if(close)close.focus();}
+ function openService(index){const item=data[index];if(!item)return;title.textContent=item.title;price.textContent=item.price;text.textContent=item.description;const extra=document.getElementById("modalExtra");if(extra){extra.replaceChildren();const heading=document.createElement("h3");heading.textContent="Что входит в услугу";extra.appendChild(heading);const list=document.createElement("ul");item.details.forEach(line=>{const li=document.createElement("li");li.textContent=line;list.appendChild(li)});extra.appendChild(list);}const booking=document.getElementById("modalBooking");if(booking){const desktop=window.matchMedia("(min-width:701px)").matches;booking.href=desktop?item.vk:"tel:+79202368999";booking.target=desktop?"_blank":"_self";booking.textContent=desktop?"Открыть услугу и записаться в VK ↗":"Позвонить и записаться ↗";}const gallery=document.getElementById("modalGallery");gallery.replaceChildren();const card=document.querySelector(`.service[data-service="${index}"]`);const cardPhoto=card?.querySelector(".service-photo img");if(cardPhoto){const photo=document.createElement("img");photo.className="instant-service-photo";photo.alt=item.title;photo.loading="eager";photo.decoding="async";photo.fetchPriority="high";photo.src=cardPhoto.currentSrc||cardPhoto.src;photo.onerror=()=>{photo.remove();const note=document.createElement("div");note.className="modal-photo-note";note.textContent="ФОТОГРАФИЯ ВРЕМЕННО НЕДОСТУПНА";gallery.appendChild(note);};gallery.appendChild(photo);}modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";const close=modal.querySelector(".modal-close");if(close)close.focus();}
  function closeService(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
  document.querySelectorAll('.service[data-service]').forEach(card=>{const index=Number(card.dataset.service);card.addEventListener('click',()=>openService(index));card.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();openService(index);}})});
  modal.querySelectorAll('[data-close]').forEach(el=>el.addEventListener('click',closeService));
@@ -847,6 +847,36 @@ a:focus-visible,button:focus-visible,.service:focus-visible{outline:3px solid #a
   .footer-in{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding-block:4px}
   .footer-in>*{max-width:100%;font-size:11px;line-height:1.5;overflow-wrap:anywhere}
   .service-modal{padding:0}
+  #serviceModal .modal-gallery{
+    display:block!important;
+    width:100%!important;
+    height:clamp(190px,58vw,260px)!important;
+    min-height:190px!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:0!important;
+    overflow:hidden!important;
+    border-radius:21px 21px 0 0;
+  }
+  #serviceModal .modal-gallery .instant-service-photo{
+    display:block!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    object-fit:cover!important;
+    object-position:center!important;
+  }
+  #serviceModal .modal-gallery .modal-photo-note{
+    display:grid;
+    width:100%;
+    height:100%;
+    min-height:190px;
+    place-items:center;
+    padding:20px;
+    text-align:center;
+    font-size:12px;
+    line-height:1.6;
+    letter-spacing:.1em;
+  }
   .modal-body{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:22px 18px calc(28px + env(safe-area-inset-bottom))}
   .modal-body .eyebrow{font-size:10px;line-height:1.5;letter-spacing:.12em;margin:0 46px 10px 0}
   .modal-body h2{font-size:clamp(26px,7vw,33px);line-height:1.2;margin:0 44px 12px 0;overflow-wrap:anywhere}
@@ -858,7 +888,7 @@ a:focus-visible,button:focus-visible,.service:focus-visible{outline:3px solid #a
   .modal-extra li{font-size:14px;line-height:1.6;padding-left:22px;overflow-wrap:anywhere}
   .modal-phone{display:block;margin:14px 0 0;text-align:center;font-size:14px;line-height:1.6;overflow-wrap:anywhere}
   .modal-phone strong{white-space:normal}
-  .modal-close{width:40px;height:40px;right:12px;top:calc(10px + env(safe-area-inset-top))}
+  .modal-close{position:sticky!important;float:none!important;display:grid;place-items:center;width:40px;height:40px;right:12px;top:8px;margin:10px 12px -48px auto!important;z-index:30!important}
   .service-photo-controls{gap:12px}
   .photo-arrow{width:40px;height:40px;font-size:24px}
 }
