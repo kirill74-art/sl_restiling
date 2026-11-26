@@ -784,5 +784,85 @@ a:focus-visible,button:focus-visible,.service:focus-visible{outline:3px solid #a
  }
 }
 </style>
+
+<style id="mobile-spacing-and-button-alignment-v1">
+@media(max-width:700px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  body{font-size:16px;line-height:1.65;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  .wrap{width:calc(100% - 32px)!important;max-width:100%;margin-inline:auto}
+  .topbar{padding:16px 0}
+  .topbar-in{gap:10px;flex-wrap:wrap;align-items:center}
+  .brand{font-size:12px;line-height:1.4;letter-spacing:.1em}
+  .top-note{font-size:8px;line-height:1.5;letter-spacing:.06em;text-align:right}
+  .hero-copy{left:0;right:0;width:100%;padding-inline:18px}
+  .hero h1{font-size:clamp(34px,9vw,46px);line-height:1.12;letter-spacing:-.045em;margin:12px 0}
+  .hero-sub{max-width:34ch;margin-inline:auto;font-size:11px;line-height:1.65;letter-spacing:.08em}
+  .rotate-hint{max-width:34ch;margin:14px auto 0;font-size:9px;line-height:1.6;letter-spacing:.1em}
+  .section{padding-block:48px}
+  .section-head{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin-bottom:24px}
+  .section-title,.intro h2{font-size:clamp(31px,8vw,40px);line-height:1.14;letter-spacing:-.04em;overflow-wrap:anywhere}
+  .section-desc,.intro p,.about-panel p,.contact-action p,.step p{font-size:15px;line-height:1.75;overflow-wrap:anywhere}
+  .intro-panel,.about-panel,.contact-panel{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;padding:22px 18px;border-radius:20px}
+  .services .cards{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+  .services .service{width:100%;min-width:0;height:auto;min-height:0;border-radius:19px}
+  .services .service-content{display:flex;flex-direction:column;gap:0;padding:18px 17px 19px}
+  .services .service-top{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:34px}
+  .services .service-num{font-size:10px;line-height:1.5;letter-spacing:.1em}
+  .services .service h3{font-size:20px;line-height:1.3;margin:13px 0 9px;overflow-wrap:anywhere}
+  .services .service p{font-size:15px;line-height:1.72;margin:0;overflow-wrap:anywhere}
+  .services .service-price{align-self:flex-start;max-width:100%;margin-top:15px;padding:8px 12px;font-size:clamp(21px,6vw,26px)!important;line-height:1.2!important;white-space:normal}
+  .services .service-more{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:15px;margin-top:0;font-size:12px;line-height:1.5}
+  .method{display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
+  .method-visual{min-height:190px}
+  .steps{margin-top:20px}
+  .step{grid-template-columns:34px minmax(0,1fr);gap:11px;padding:15px 0}
+  .step h3{font-size:16px;line-height:1.4;margin:0 0 5px;overflow-wrap:anywhere}
+  .step p{margin:0}
+  .numbers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:20px}
+  .number{min-width:0;padding:11px 7px;gap:5px}
+  .number b{font-size:clamp(18px,5.5vw,23px);line-height:1.2}
+  .number span{font-size:10px;line-height:1.4;overflow-wrap:anywhere}
+  .contact-details{display:grid;gap:12px;margin-top:20px}
+  .contact-details a{display:grid;grid-template-columns:34px minmax(0,1fr);align-items:center;gap:10px;font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+  .contact-action{padding:20px 17px;border-radius:18px}
+  .contact-action h3{font-size:20px;line-height:1.35;margin:0 0 10px;overflow-wrap:anywhere}
+  .button,.button.secondary,.modal-booking{
+    display:flex!important;
+    width:100%!important;
+    max-width:100%;
+    min-height:52px;
+    align-items:center;
+    justify-content:center;
+    margin:14px 0 0!important;
+    padding:12px 16px!important;
+    border-radius:14px;
+    font-size:14px!important;
+    line-height:1.35!important;
+    text-align:center;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    box-sizing:border-box;
+  }
+  .contact-action .button+.button{margin-top:10px!important}
+  .footer-in{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding-block:4px}
+  .footer-in>*{max-width:100%;font-size:11px;line-height:1.5;overflow-wrap:anywhere}
+  .service-modal{padding:0}
+  .modal-body{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:22px 18px calc(28px + env(safe-area-inset-bottom))}
+  .modal-body .eyebrow{font-size:10px;line-height:1.5;letter-spacing:.12em;margin:0 46px 10px 0}
+  .modal-body h2{font-size:clamp(26px,7vw,33px);line-height:1.2;margin:0 44px 12px 0;overflow-wrap:anywhere}
+  .modal-price{align-self:flex-start;max-width:100%;font-size:22px;line-height:1.25;margin:0 0 14px;white-space:normal}
+  .modal-body p{font-size:15px;line-height:1.75;margin:0 0 16px;overflow-wrap:anywhere}
+  .modal-extra{margin:8px 0 14px}
+  .modal-extra h3{font-size:17px;line-height:1.4;margin:0 0 9px}
+  .modal-extra ul{gap:8px}
+  .modal-extra li{font-size:14px;line-height:1.6;padding-left:22px;overflow-wrap:anywhere}
+  .modal-phone{display:block;margin:14px 0 0;text-align:center;font-size:14px;line-height:1.6;overflow-wrap:anywhere}
+  .modal-phone strong{white-space:normal}
+  .modal-close{width:40px;height:40px;right:12px;top:calc(10px + env(safe-area-inset-top))}
+  .service-photo-controls{gap:12px}
+  .photo-arrow{width:40px;height:40px;font-size:24px}
+}
+</style>
+
 </body>
 </html>
