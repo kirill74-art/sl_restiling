@@ -497,7 +497,7 @@ addEventListener('scroll',onScroll,{passive:true});onScroll();
 .modal-gallery{display:block!important;min-height:0!important;background:#e7eef2}
 .instant-service-photo{display:block;width:100%;height:clamp(210px,42vw,360px);object-fit:cover;background:#dbe4e9}
 .service-photo img{display:block;width:100%;height:100%;object-fit:cover}
-</style><style id="service-card-layout-repair">.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.service{display:flex;flex-direction:column;min-width:0}.service-photo{width:100%;aspect-ratio:16/10;overflow:hidden}.service-photo img{width:100%;height:100%;object-fit:cover;display:block}@media(max-width:700px){.cards{grid-template-columns:1fr;gap:16px}}</style></body></html>
+</style><style id="service-card-layout-repair">.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.service{display:flex;flex-direction:column;min-width:0}.service-photo{width:100%;aspect-ratio:16/10;overflow:hidden}.service-photo img{width:100%;height:100%;object-fit:cover;display:block}@media(max-width:700px){.cards{grid-template-columns:1fr;gap:16px}}</style>
 <style>
 /* Keep the first screen visible immediately, even while WebGL initializes. */
 #carPoster{background:transparent!important}
@@ -702,3 +702,83 @@ a:focus-visible,button:focus-visible,.service:focus-visible{outline:3px solid #8
  },{passive:false});
 })();
 </script>
+
+<!-- Final layout normalization and real keyboard section navigation -->
+<style id="final-layout-normalization">
+:root{--page-gutter:clamp(18px,4vw,64px);scroll-padding-top:24px}
+html{scroll-behavior:smooth}
+body{min-width:320px;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.wrap{width:min(1240px,calc(100% - var(--page-gutter)*2));margin-inline:auto}
+section,.section{min-width:0}
+.section{overflow:hidden}
+.section>.wrap{position:relative}
+.section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.72fr);align-items:end;gap:clamp(20px,3vw,42px)}
+.section-head>*{min-width:0}
+.cards{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:stretch;gap:clamp(16px,2vw,26px)!important}
+.service{width:100%;height:100%;min-width:0;display:flex;flex-direction:column;align-self:stretch;border-radius:24px}
+.service-photo{width:100%;height:auto;aspect-ratio:16/10;min-height:0;flex:0 0 auto;overflow:hidden}
+.service-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.service-content{flex:1;display:flex;flex-direction:column;min-width:0}
+.service h3,.service p,.section-title,.section-desc,.intro h2{overflow-wrap:anywhere}
+.service-more{margin-top:auto}
+.intro-panel,.about-panel,.contact-panel{min-width:0;align-items:center}
+.method{min-width:0}
+.method>*{min-width:0}
+.numbers{grid-template-columns:repeat(3,minmax(0,1fr))}
+.contact-details a{min-width:0;overflow-wrap:anywhere}
+.contact-action{min-width:0}
+.footer-in{flex-wrap:wrap}
+.service-modal{z-index:100}
+.modal-panel{max-width:calc(100vw - 32px)}
+@media(min-width:701px) and (max-width:1024px){
+ .wrap{width:calc(100% - 48px)}
+ .cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .section-head{grid-template-columns:1fr;gap:12px}
+ .service-photo{aspect-ratio:16/9}
+}
+@media(max-width:700px){
+ :root{--page-gutter:16px}
+ .wrap{width:calc(100% - 32px)}
+ .cards{grid-template-columns:minmax(0,1fr)!important;gap:17px!important}
+ .service{border-radius:21px}
+ .service-photo{aspect-ratio:16/9}
+ .service-content{padding:20px}
+ .section-head{grid-template-columns:1fr;gap:12px;margin-bottom:24px}
+ .section{padding-block:54px}
+ .intro-panel,.about-panel,.contact-panel{grid-template-columns:minmax(0,1fr);gap:22px;padding:24px 20px}
+ .method{grid-template-columns:minmax(0,1fr);gap:24px}
+ .numbers{gap:7px}
+ .number{min-width:0;padding:12px 8px}
+ .footer-in{align-items:flex-start;gap:10px}
+ .modal-panel{max-width:100vw}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto!important}
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+<script id="space-key-section-navigation">
+(()=>{
+ const sectionSelectors=['#home','.intro','#services','#approach','#about','#contacts','footer'];
+ const getStops=()=>sectionSelectors.map(sel=>document.querySelector(sel)).filter(Boolean);
+ let locked=false;
+ document.addEventListener('keydown',event=>{
+  if(event.code!=='Space'||event.repeat||event.defaultPrevented)return;
+  const el=event.target;
+  if(el&&(el.isContentEditable||/INPUT|TEXTAREA|SELECT|BUTTON|A/.test(el.tagName)))return;
+  if(document.querySelector('.service-modal.open'))return;
+  if(window.matchMedia('(max-width:700px)').matches)return;
+  event.preventDefault();
+  if(locked)return;
+  const stops=getStops();
+  if(!stops.length)return;
+  const y=window.scrollY+Math.max(80,window.innerHeight*.18);
+  const next=stops.find(node=>node.getBoundingClientRect().top+window.scrollY>y+40);
+  const destination=next||stops[0];
+  locked=true;
+  destination.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+  window.setTimeout(()=>{locked=false},850);
+ },{passive:false});
+})();
+</script>
+</body></html>
