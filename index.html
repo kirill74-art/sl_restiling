@@ -607,3 +607,98 @@ document.addEventListener('DOMContentLoaded',()=>{
  unique.forEach((url,index)=>{const preload=new Image();preload.decoding='async';preload.fetchPriority=index<3?'high':'low';preload.src=url;});
 });
 </script>
+
+
+<!-- Smooth premium polish: responsive spacing, restrained motion and keyboard interaction -->
+<style id="smooth-premium-polish">
+:root{scroll-padding-top:24px}
+html{scroll-behavior:smooth;scrollbar-gutter:stable}
+body{min-width:320px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%}
+button,a,.service{ -webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible,.service:focus-visible{outline:3px solid #8fc9e3;outline-offset:4px}
+.topbar{z-index:20}
+.topbar-in,.wrap{min-width:0}
+.hero-sticky{isolation:isolate}
+.hero-sticky:before,.hero-sticky:after{will-change:transform,opacity;pointer-events:none}
+.hero-copy{will-change:opacity}
+.section{overflow:clip}
+.section-head>*{min-width:0}
+.cards{align-items:stretch}
+.service{height:100%;will-change:transform}
+.service-photo{contain:layout paint}
+.service-photo img{backface-visibility:hidden;transform:translateZ(0)}
+.service-content{min-width:0}
+.service h3,.service p,.section-title,.intro h2{overflow-wrap:anywhere}
+.service-more{gap:12px}
+.button{transition:transform .28s cubic-bezier(.2,.75,.2,1),box-shadow .28s,filter .28s}
+.button:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 13px 30px rgba(87,132,158,.25)}
+.button:active{transform:translateY(0) scale(.985)}
+.service-modal{overscroll-behavior:contain}
+.modal-panel{will-change:transform}
+.modal-gallery img{backface-visibility:hidden}
+@keyframes spaceHalo{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.78)}
+  18%{opacity:.8}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(1.32)}
+}
+.hero-sticky.space-pulse:after{animation:spaceHalo 1.05s cubic-bezier(.16,.72,.24,1) both}
+.hero-sticky.space-pulse:before{box-shadow:0 0 130px rgba(119,195,225,.24),inset 0 0 110px rgba(175,225,245,.13);transition:box-shadow .7s ease}
+.hero-sticky.space-pulse .hero-copy{animation:spaceText 1.05s cubic-bezier(.16,.72,.24,1) both}
+@keyframes spaceText{0%{transform:translateY(8px);filter:brightness(1)}35%{transform:translateY(0);filter:brightness(1.22)}100%{transform:translateY(0);filter:brightness(1)}}
+@media(min-width:1001px){
+ .wrap{width:min(1240px,calc(100% - 80px))}
+ .section{padding-top:clamp(76px,7vw,112px);padding-bottom:clamp(76px,7vw,112px)}
+ .cards{gap:clamp(20px,2vw,28px)}
+ .service{border-radius:26px}
+ .service-content{padding:25px 26px 24px}
+ .service h3{font-size:clamp(19px,1.55vw,23px)}
+ .service p{font-size:15px;line-height:1.75}
+}
+@media(min-width:701px) and (max-width:1000px){
+ .wrap{width:calc(100% - 48px)}
+ .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+ .service{min-height:0}
+}
+@media(max-width:700px){
+ html,body{width:100%;overflow-x:hidden}
+ .wrap{width:calc(100% - 34px)}
+ .section{padding-top:54px;padding-bottom:58px}
+ .cards{grid-template-columns:1fr;gap:17px}
+ .service{border-radius:22px}
+ .service-content{padding:20px 20px 21px}
+ .service-photo{height:clamp(190px,58vw,245px)!important;min-height:190px!important;flex-basis:clamp(190px,58vw,245px)!important}
+ .intro-panel,.about-panel,.contact-panel{gap:22px}
+ .hero{min-height:620px}
+ .hero-sticky{min-height:100svh}
+ .hero h1{letter-spacing:-.045em}
+ .modal-panel{overscroll-behavior-y:contain}
+}
+@media(hover:none){
+ .service:hover{transform:none;box-shadow:0 16px 42px rgba(31,57,72,.13)}
+ .service:hover .service-photo img{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+<script id="space-key-premium-animation">
+(()=>{
+ const hero=document.querySelector('.hero-sticky');
+ if(!hero)return;
+ let pulseTimer=0;
+ document.addEventListener('keydown',event=>{
+  if(event.code!=='Space'||event.repeat||event.defaultPrevented)return;
+  const target=event.target;
+  if(target&&(target.isContentEditable||/INPUT|TEXTAREA|SELECT|BUTTON|A/.test(target.tagName)))return;
+  if(document.querySelector('.service-modal.open'))return;
+  if(window.matchMedia('(max-width: 700px)').matches)return;
+  event.preventDefault();
+  hero.classList.remove('space-pulse');
+  void hero.offsetWidth;
+  hero.classList.add('space-pulse');
+  clearTimeout(pulseTimer);
+  pulseTimer=setTimeout(()=>hero.classList.remove('space-pulse'),1150);
+ },{passive:false});
+})();
+</script>
